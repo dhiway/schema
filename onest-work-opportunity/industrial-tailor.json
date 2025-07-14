@@ -19,7 +19,8 @@
           "type": "string",
           "title": "Job Provider Registration Details",
           "description": "GST, CIN, TAN, PAN or other registration number",
-          "minLength": 1
+          "minLength": 1,
+          "pattern": "^.+$"
         },
         "jobProviderLocation": {
           "type": "string",
@@ -32,25 +33,6 @@
           "title": "Job Provider Logo",
           "description": "Upload company logo (PNG, JPG, max 5MB)",
           "format": "data-url"
-        },
-        "contactPersonName": {
-          "type": "string",
-          "title": "Contact Person Name",
-          "description": "Enter manager/contact person name",
-          "minLength": 1
-        },
-        "contactEmail": {
-          "type": "string",
-          "title": "Contact Email",
-          "description": "manager@company.com",
-          "format": "email",
-          "minLength": 1
-        },
-        "contactPhone": {
-          "type": "string",
-          "title": "Contact Phone Number",
-          "description": "+91 98765 43210",
-          "minLength": 1
         }
       },
       "required": ["jobProviderName", "jobProviderLocation"]
@@ -145,7 +127,7 @@
                 "stayProvided": { "enum": ["yes-paid"] },
                 "costPerSharingBed": { "minLength": 1 }
               },
-              "required": []
+              "required": ["costPerSharingBed"]
             },
             {
               "properties": {
@@ -175,50 +157,44 @@
           "minimum": 18,
           "maximum": 100
         },
-        "sampleTaskVideo": {
-          "type": "string",
-          "title": "Sample Task Video",
-          "format": "data-url",
-          "description": "Upload video showing sample task (MOV, AVI, MP4, MKV, WMV, max 50MB)"
+        "jukiSpeedSubsection": {
+          "type": "object",
+          "title": "Speed of Juki Machine Operation",
+          "x-subsection": "juki-speed-subsection",
+          "x-ui-subsection": "border",
+          "properties": {
+            "uploadSpeedSampleMedia": {
+              "type": "array",
+              "title": "Upload Sample media for each acceptable proof",
+              "description": "Upload sample media for each acceptable proof (up to 5 files)",
+              "items": {
+                "type": "string",
+                "format": "data-url"
+              },
+              "maxItems": 5
+            }
+          }
         },
-        "sampleTaskImage": {
-          "type": "string",
-          "title": "Sample Task Image",
-          "format": "data-url",
-          "description": "Upload image showing sample task (PNG, JPEG, JPG, max 5MB)"
-        },
-        "speedBenchmarkMins": {
-          "type": "integer",
-          "title": "Speed Benchmark (mins taken for sample task)",
-          "description": "Enter time in minutes",
-          "minimum": 1
-        },
-        "proofsAcceptableForIntentToJoin": {
-          "type": "string",
-          "title": "Proofs Acceptable for Intent to Join",
-          "description": "Enter acceptable proofs"
+        "jukiMachineQualityOfOutput": {
+          "type": "object",
+          "title": "Juki Machine - Quality of output",
+          "x-subsection": "juki-machine-quality-of-output",
+          "x-ui-subsection": "border",
+          "properties": {
+            "uploadQualitySampleMedia": {
+              "type": "array",
+              "title": "Upload Sample media for each acceptable proof",
+              "description": "Upload sample media for each acceptable proof (up to 5 files)",
+              "items": {
+                "type": "string",
+                "format": "data-url"
+              },
+              "maxItems": 5
+            }
+          }
+        }
         }
       }
     },
-    "jobDescription": {
-      "type": "object",
-      "title": "Job Description",
-      "x-section": "job-description",
-      "properties": {
-        "description": {
-          "type": "string",
-          "title": "Job Requirement/Responsibilities",
-          "description": "Describe the job role, responsibilities, and what you're looking for...",
-          "minLength": 1
-        },
-        "workTimings": {
-          "type": "string",
-          "title": "Work Timings",
-          "description": "e.g., 9 AM - 6 PM"
-        }
-      },
-      "required": ["description"]
-    }
-  },
-  "required": ["basicInfo", "jobDetails", "jobNeeds", "jobDescription"]
+  "required": ["basicInfo", "jobDetails", "jobNeeds"]
 } 
