@@ -1,6 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Generic ITI Profile Schema",
+  "schemaID": 1,
   "description": "Complete profile schema for generic ITI role",
   "type": "object",
   "properties": {
