@@ -14,22 +14,13 @@
             "title": "Full Name",
             "description": "Enter your full name"
           },
-          "fatherName": {
-            "type": "string",
-            "title": "Father's Name",
-            "description": "Enter your father's name"
-          },
           "phone": {
             "type": "string",
             "title": "Phone Number",
             "description": "Your contact phone number"
           }
         },
-        "required": ["name", "phone"],
-        "ui": {
-          "order": ["name", "fatherName", "phone"],
-          "description": "Enter your basic details"
-        }
+        "required": ["phone"]
       },
       "whatIHave": {
         "type": "object",
@@ -39,9 +30,7 @@
           "age": {
             "type": "integer",
             "title": "Age",
-            "description": "Your age",
-            "minimum": 18,
-            "maximum": 65
+            "description": "Your age"
           },
           "itiSpecialization": {
             "type": "array",
