@@ -13,7 +13,8 @@
           "type": "string",
           "title": "Job Provider Name",
           "description": "Enter job provider/company name",
-          "minLength": 1
+          "minLength": 1,
+          "pattern": "^\\s*\\S+\\s*$"
         },
         "jobProviderRegistration": {
           "type": "string",
@@ -26,7 +27,8 @@
           "type": "string",
           "title": "Job Provider Location",
           "description": "Enter job provider location",
-          "minLength": 1
+          "minLength": 1,
+          "pattern": "^\\s*\\S+\\s*$"
         },
         "jobProviderLogo": {
           "type": "string",
@@ -46,7 +48,8 @@
           "type": "string",
           "title": "Job Title",
           "description": "Job title (editable)",
-          "minLength": 1
+          "minLength": 1,
+          "pattern": "^\\s*\\S+\\s*$"
         },
         "positions": {
           "type": "integer",
@@ -77,11 +80,19 @@
           "minimum": 1,
           "maximum": 24
         },
-        "monthlyInHand": {
+        "minMonthlyInHand": {
           "type": "number",
-          "title": "Monthly In-hand Salary (INR)",
-          "description": "Enter monthly in-hand salary amount",
-          "minimum": 0
+          "title": "Monthly minimum in-hand salary (INR)",
+          "description": "Enter minimum monthly in-hand salary amount",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "maxMonthlyInHand": {
+          "type": "number",
+          "title": "Monthly maximum in-hand salary (INR)",
+          "description": "Enter maximum monthly in-hand salary amount",
+          "minimum": 0,
+          "maximum": 1000000
         },
         "monthlyPfEsicBenefits": {
           "type": "number",
@@ -152,6 +163,20 @@
           "x-subsection": "physical-fitness-subsection",
           "x-ui-subsection": "border",
           "properties": {
+            "physicallyFitForRole": {
+              "type": "string",
+              "title": "Physically Fit for Role",
+              "enum": ["yes", "no"],
+              "enumNames": ["Yes", "No"],
+              "description": "Can do standing work for 9 hours"
+            },
+            "okayToStandAndWork": {
+              "type": "string",
+              "title": "Okay to stand and work?",
+              "enum": ["yes", "no"],
+              "enumNames": ["Yes", "No"],
+              "description": "Will do standing work for 9 hours"
+            },
             "uploadSampleMedia": {
               "type": "array",
               "title": "Sample Media for Each Acceptable Proof",
@@ -162,8 +187,7 @@
               },
               "maxItems": 5
             }
-          },
-          "required": ["uploadSampleMedia"]
+          }
         },
         "englishReadingSkillsSubsection": {
           "type": "object",
@@ -171,6 +195,13 @@
           "x-subsection": "english-reading-skills-subsection",
           "x-ui-subsection": "border",
           "properties": {
+            "ableToReadComprehendBasicEnglish": {
+              "type": "number",
+              "title": "Able to read and comprehend basic english words commonly occurring on labels?",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "Assessment score"
+            },
             "uploadSampleMedia": {
               "type": "array",
               "title": "Sample Media for Each Acceptable Proof",
@@ -181,12 +212,9 @@
               },
               "maxItems": 5
             }
-          },
-          "required": ["uploadSampleMedia"]
+          }
         }
-      },
-      "required": ["ageAllowedLowerLimit", "ageAllowedUpperLimit", "physicalFitnessSubsection", "englishReadingSkillsSubsection"]
+      }
     }
-  },
-  "required": ["basicInfo", "jobDetails", "jobNeeds"]
+  }
 } 
