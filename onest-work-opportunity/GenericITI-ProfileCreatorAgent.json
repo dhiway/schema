@@ -4,6 +4,7 @@
   "schemaID": 1,
   "description": "Complete profile schema for generic ITI role",
   "type": "object",
+  "agentId": "string",
   "properties": {
     "whoIAm": {
       "type": "object",
