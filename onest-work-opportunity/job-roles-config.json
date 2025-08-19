@@ -1,56 +1,65 @@
 {
   "jobRoles": {
     "Industrial Tailor": {
-      "industry": "Textile Industry",
+      "schemaFile": "industrial-tailor.json",
+      "industry": "Manufacturing",
       "description": "Manufacturing and garment industry positions"
     },
-    "Warehouse Loader & Picker": {
-      "industry": "Warehousing Industry",
+    "Warehouse Loader and Picker": {
+      "schemaFile": "warehouse-loader-picker.json",
+      "industry": "Logistics", 
       "description": "Logistics and warehouse operations"
     },
-    "Field Sales Executive": {
-      "industry": "Sales",
-      "description": "Sales and business development roles"
-    },
+
     "In Store Promoter": {
+      "schemaFile": "in-store-promoter.json",
       "industry": "Retail",
       "description": "Retail and promotional activities"
     },
     "Recruitment Associate": {
+      "schemaFile": "recruitment-associate.json",
       "industry": "Human Resources",
       "description": "HR and talent acquisition positions"
     },
     "Electrician": {
-      "industry": "Manufacturing",
-      "description": "Electrical installation, maintenance, and repair work"
+      "schemaFile": "electrical.json",
+      "industry": "Electrical",
+      "description": "Electrical installation and maintenance positions"
     },
     "Fitter": {
-      "industry": "Manufacturing",
-      "description": "Mechanical fitting, assembly, and installation work"
+      "schemaFile": "fitter.json",
+      "industry": "Fitting",
+      "description": "Fitting and maintenance positions"
     },
     "Mechanic": {
-      "industry": "Manufacturing",
-      "description": "Equipment maintenance, repair, and troubleshooting"
+      "schemaFile": "mechanic.json",
+      "industry": "Mechanic",
+      "description": "Mechanic and maintenance positions"
     },
     "Machine Operator": {
-      "industry": "Manufacturing",
-      "description": "Operating and monitoring industrial machinery and equipment"
+      "schemaFile": "machine-operator.json",
+      "industry": "Machine Operator",
+      "description": "Machine operator and maintenance positions"
     },
     "Data Entry Operator": {
-      "industry": "Administration",
-      "description": "Data entry and administrative work"
+      "schemaFile": "data-entry.json",
+      "industry": "Data Entry",
+      "description": "Data entry and administrative positions"
     },
     "Tele Salesperson": {
+      "schemaFile": "tele-salesperson.json",
       "industry": "Sales",
-      "description": "Telephone-based sales and customer service"
+      "description": "Tele sales and customer service positions"
     },
-    "Field Sales Person": {
+    "Field Salesperson": {
+      "schemaFile": "field-sales-person.json",
       "industry": "Sales",
-      "description": "Field-based sales and business development"
+      "description": "Field sales and customer service positions"
     },
     "ITI Student": {
-      "industry": "Manufacturing",
-      "description": "ITI (Industrial Training Institute) student roles and specializations"
+      "schemaFile": "genericITI.json",
+      "industry": "ITI",
+      "description": "ITI  student positions across various trades"
     }
   }
 } 

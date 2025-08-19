@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "type": "object",
-  "title": "Tele Salesperson Job Posting",
-  "description": "Complete job posting form for Tele Salesperson positions",
+  "title": "Data Entry Operator Job Posting",
+  "description": "Complete job posting form for Data Entry Operator positions",
   "properties": {
     "basicInfo": {
       "type": "object",
@@ -215,28 +215,15 @@
               },
               "uniqueItems": true,
               "minItems": 1
-            }
-          }
-        },
-        "customerHandlingSubsection": {
-          "type": "object",
-          "title": "Customer Handling",
-          "x-subsection": "customer-handling-subsection",
-          "x-ui-subsection": "border",
-          "properties": {
-            "communicationSkillScore": {
-              "type": "string",
-              "title": "Communication Skill Score",
-              "description": "Enter the minimum acceptable communication skill score"
             },
-            "domainKnowledge": {
+            "softwareKnowledgePreferred": {
               "type": "array",
-              "title": "Domain Knowledge",
-              "description": "Select domain knowledge areas",
+              "title": "Software Knowledge Preferred",
+              "description": "Select software knowledge preferred for the job",
               "items": {
                 "type": "string",
-                "enum": ["general", "cashcards", "electronics", "mobile-phones", "kitchen-appliances", "furniture", "other"],
-                "enumNames": ["General", "Cashcards", "Electronics", "Mobile Phones", "Kitchen Appliances", "Furniture", "Other"]
+                "enum": ["Google Suite", "Excel", "Tally", "Other"],
+                "enumNames": ["Google Suite", "Excel", "Tally", "Other"]
               },
               "uniqueItems": true,
               "minItems": 1
