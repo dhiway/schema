@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Mechanic Profile Schema",
-  "description": "Complete profile schema for mechanic role",
+  "title": "Generic ITI Profile Schema",
+  "description": "Complete profile schema for generic ITI role",
   "type": "object",
   "properties": {
     "whoIAm": {
@@ -86,11 +86,21 @@
           "ui:placeholder": "Enter phone number",
           "ui:disabled": false,
           "ui:verified": false
+        },
+        "age": {
+          "type": "integer",
+          "title": "Age",
+          "description": "Your age",
+          "minimum": 18,
+          "maximum": 65,
+          "ui:widget": "number",
+          "ui:placeholder": "Enter your age",
+          "ui:disabled": false
         }
       },
       "required": ["name", "location", "phone"],
       "ui": {
-        "order": ["name", "fatherName", "motherName", "dateOfBirth", "gender", "location", "phone"],
+        "order": ["name", "fatherName", "motherName", "dateOfBirth", "gender", "location", "phone", "age"],
         "description": "Enter your basic details or import from DigiLocker for quick setup",
         "showDigiLocker": true,
         "digiLockerConfig": {
@@ -106,16 +116,6 @@
       "title": "What I Have",
       "description": "Your qualifications, skills, and experience",
       "properties": {
-        "age": {
-          "type": "integer",
-          "title": "Age",
-          "description": "Your age",
-          "minimum": 18,
-          "maximum": 65,
-          "ui:widget": "number",
-          "ui:placeholder": "Enter your age",
-          "ui:disabled": false
-        },
         "highestQualification": {
           "type": "array",
           "title": "Highest Educational Qualification",
@@ -583,27 +583,12 @@
           "ui:currency": "₹",
           "ui:disabled": false
         },
-        "itiAssessmentScore": {
-          "type": "number",
-          "title": "Trade Assessment Score",
-          "description": "Assessment for Trade",
-          "minimum": 0,
-          "ui:widget": "number",
-          "ui:placeholder": "Enter Trade assessment score",
-          "ui:disabled": false
-        },
-        "intentAssessmentScore": {
-          "type": "number",
-          "title": "Intent Assessment Score",
-          "description": "Assessment for ITI",
-          "minimum": 0,
-          "ui:widget": "number",
-          "ui:placeholder": "Enter intent assessment score",
+        
           "ui": {
-            "order": ["age", "highestQualification", "itiSpecialization", "rollNumber", "itiInstitute", "trainingDuration", "totalYearsOfExperience", "languageSpoken", "currentMonthlySalary", "itiAssessmentScore", "intentAssessmentScore", "taskVideo", "qrCodeScan"],
+            "order": ["age", "highestQualification", "itiSpecialization", "rollNumber", "itiInstitute", "trainingDuration", "totalYearsOfExperience", "languageSpoken", "currentMonthlySalary", "taskVideo", "qrCodeScan"],
             "description": "Assessment for ITI"
           }
-        },
+        ,
         "taskVideo": {
           "type": "string",
           "title": "Task Upload",
@@ -625,7 +610,6 @@
       },
       "ui": {
         "order": [
-          "age",
           "highestQualification",
           "itiSpecialization",
           "rollNumber",
@@ -634,8 +618,6 @@
           "totalYearsOfExperience",
           "languageSpoken",
           "currentMonthlySalary",
-          "itiAssessmentScore",
-          "intentAssessmentScore",
           "taskVideo",
           "qrCodeScan"
         ],
