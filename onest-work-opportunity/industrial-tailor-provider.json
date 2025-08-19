@@ -13,7 +13,8 @@
           "type": "string",
           "title": "Job Provider Name",
           "description": "Enter job provider/company name",
-          "minLength": 1
+          "minLength": 1,
+          "pattern": "^\\s*\\S+\\s*$"
         },
         "jobProviderRegistration": {
           "type": "string",
@@ -26,7 +27,8 @@
           "type": "string",
           "title": "Job Provider Location",
           "description": "Enter job provider location",
-          "minLength": 1
+          "minLength": 1,
+          "pattern": "^\\s*\\S+\\s*$"
         },
         "jobProviderLogo": {
           "type": "string",
@@ -46,7 +48,8 @@
           "type": "string",
           "title": "Job Title",
           "description": "Job title (editable)",
-          "minLength": 1
+          "minLength": 1,
+          "pattern": "^\\s*\\S+\\s*$"
         },
         "positions": {
           "type": "integer",
@@ -54,6 +57,16 @@
           "description": "How many positions are available?",
           "minimum": 1,
           "default": 1
+        },
+        "hiringManagerName": {
+          "type": "string",
+          "title": "Hiring Manager Name",
+          "description": "Enter the name of the hiring manager"
+        },
+        "hiringManagerDesignation": {
+          "type": "string",
+          "title": "Hiring Manager Designation",
+          "description": "Enter the designation of the hiring manager"
         },
         "jobDetailsVideo": {
           "type": "string",
@@ -77,22 +90,25 @@
           "minimum": 1,
           "maximum": 24
         },
-        "monthlyInHand": {
+        "minMonthlyInHand": {
           "type": "number",
-          "title": "Monthly In-hand Salary (INR)",
-          "description": "Enter monthly in-hand salary amount",
-          "minimum": 0
+          "title": "Monthly minimum in-hand salary (INR)",
+          "description": "Enter minimum monthly in-hand salary amount",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "maxMonthlyInHand": {
+          "type": "number",
+          "title": "Monthly maximum in-hand salary (INR)",
+          "description": "Enter maximum monthly in-hand salary amount",
+          "minimum": 0,
+          "maximum": 1000000
         },
         "monthlyPfEsicBenefits": {
           "type": "number",
           "title": "Monthly PF & ESIC Benefits (INR)",
           "description": "Enter monthly PF & ESIC benefits amount",
           "minimum": 0
-        },
-        "monthlyPfEsicExplanation": {
-          "type": "string",
-          "title": "Monthly PF & ESIC Explanation",
-          "description": "Explain the PF & ESIC benefits details"
         },
         "monthlyAverageOT": {
           "type": "string",
@@ -151,16 +167,29 @@
           "minimum": 18,
           "maximum": 100
         },
-        "jukiSpeedSubsection": {
+        "jukiMachineStraightLineSubsection": {
           "type": "object",
-          "title": "Speed of Juki Machine Operation",
-          "x-subsection": "juki-speed-subsection",
+          "title": "Juki Machine - Straight Line Stitch Assessment",
+          "x-subsection": "Juki Machine - Straight Line Stitch Assessment",
           "x-ui-subsection": "border",
           "properties": {
-            "uploadSpeedSampleMedia": {
+            "selectionCriteria": {
+              "type": "string",
+              "title": "Selection Criteria - Quality",
+              "description": "Pass means the candidate is able to stitch straight lines with atleast a 70% accuracy",
+              "enum": ["Pass", "Fail"],
+              "enumNames": ["Pass", "Fail"]
+            },
+            "selectionCriteriaTimeAllowed": {
+              "type": "number",
+              "title": "Selection Criteria - Max. Time Allowed",
+              "description": "The highest acceptable time (in minutes) allowed to do the task",
+              "minimum": 0
+            },
+            "uploadSampleMedia": {
               "type": "array",
-              "title": "Upload Sample media for each acceptable proof",
-              "description": "Upload sample media for each acceptable proof (up to 5 files)",
+              "title": "Upload Sample media",
+              "description": "Upload reference image",
               "items": {
                 "type": "string",
                 "format": "data-url"
@@ -168,27 +197,8 @@
               "maxItems": 5
             }
           }
-        },
-        "jukiMachineQualityOfOutput": {
-          "type": "object",
-          "title": "Juki Machine - Quality of output",
-          "x-subsection": "juki-machine-quality-of-output",
-          "x-ui-subsection": "border",
-          "properties": {
-            "uploadQualitySampleMedia": {
-              "type": "array",
-              "title": "Upload Sample media for each acceptable proof",
-              "description": "Upload sample media for each acceptable proof (up to 5 files)",
-              "items": {
-                "type": "string",
-                "format": "data-url"
-              },
-              "maxItems": 5
-            }
-          }
-        }
         }
       }
-    },
-  "required": ["basicInfo", "jobDetails", "jobNeeds"]
-} 
+    }
+  }
+}
