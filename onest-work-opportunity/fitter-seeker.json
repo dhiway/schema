@@ -86,11 +86,21 @@
             "ui:placeholder": "Enter phone number",
             "ui:disabled": false,
             "ui:verified": false
+          },
+          "age": {
+            "type": "integer",
+            "title": "Age",
+            "description": "Your age",
+            "minimum": 18,
+            "maximum": 65,
+            "ui:widget": "number",
+            "ui:placeholder": "Enter your age",
+            "ui:disabled": false
           }
         },
         "required": ["name", "location", "phone"],
         "ui": {
-          "order": ["name", "fatherName", "motherName", "dateOfBirth", "gender", "location", "phone"],
+          "order": ["name", "fatherName", "motherName", "dateOfBirth", "gender", "location", "phone", "age"],
           "description": "Enter your basic details or import from DigiLocker for quick setup",
           "showDigiLocker": true,
           "digiLockerConfig": {
@@ -106,16 +116,6 @@
         "title": "What I Have",
         "description": "Your qualifications, skills, and experience",
         "properties": {
-          "age": {
-            "type": "integer",
-            "title": "Age",
-            "description": "Your age",
-            "minimum": 18,
-            "maximum": 65,
-            "ui:widget": "number",
-            "ui:placeholder": "Enter your age",
-            "ui:disabled": false
-          },
           "highestQualification": {
             "type": "array",
             "title": "Highest Educational Qualification",
@@ -584,27 +584,11 @@
             "ui:currency": "₹",
             "ui:disabled": false
           },
-          "fitterAssessmentScore": {
-            "type": "number",
-            "title": "Trade Assessment Score",
-            "description": "Assessment for trade",
-            "minimum": 0,
-            "ui:widget": "number",
-            "ui:placeholder": "Enter trade assessment score",
-            "ui:disabled": false
-          },
-          "intentAssessmentScore": {
-            "type": "number",
-            "title": "Intent Assessment Score",
-            "description": "Assessment for fitter",
-            "minimum": 0,
-            "ui:widget": "number",
-            "ui:placeholder": "Enter intent assessment score",
             "ui": {
-              "order": ["age", "highestQualification", "itiSpecialization", "rollNumber", "itiInstitute", "trainingDuration", "totalYearsOfExperience", "languageSpoken", "currentMonthlySalary", "fitterAssessmentScore", "intentAssessmentScore", "taskVideo", "qrCodeScan"],
+              "order": ["highestQualification", "itiSpecialization", "rollNumber", "itiInstitute", "trainingDuration", "totalYearsOfExperience", "languageSpoken", "currentMonthlySalary", "taskVideo", "qrCodeScan"],
               "description": "Assessment for fitter"
             }
-          },
+          ,
           "taskVideo": {
             "type": "string",
             "title": "Task Upload",
@@ -626,7 +610,6 @@
         },
         "ui": {
           "order": [
-            "age",
             "highestQualification",
             "itiSpecialization",
             "rollNumber",
@@ -635,8 +618,6 @@
             "totalYearsOfExperience",
             "languageSpoken",
             "currentMonthlySalary",
-            "fitterAssessmentScore",
-            "intentAssessmentScore",
             "taskVideo",
             "qrCodeScan"
           ],
