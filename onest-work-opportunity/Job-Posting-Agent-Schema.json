@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Job Posting Schema",
+  "type": "object",
+    "name": {
+      "type": "string"
+    },
+    "phoneNumber": {
+      "type": "string"
+    },
+    "jobProviderName": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "enum": [
+        "Fitter",
+        "Electrician",
+        "Machine Operator",
+        "Mechanic",
+        "ITI (Other)"
+      ],
+      "description": "Job title restricted to a fixed set of values"
+    },
+    "positions": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Number of open positions"
+    },
+    "monthly_salary": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Monthly salary in INR"
+    },
+    "location": {
+      "type": "string",
+      "description": "Job location"
+    },
+  "required": [
+    "name",
+    "phoneNumber",
+    "title"
+  ]
+}
