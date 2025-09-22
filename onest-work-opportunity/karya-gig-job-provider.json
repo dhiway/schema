@@ -1,0 +1,320 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "type": "object",
+  "title": "Karya Gig Job Posting",
+  "description": "Complete job posting form for Karya Gig Job positions",
+  "properties": {
+    "basicInfo": {
+      "type": "object",
+      "title": "Basic Information",
+      "x-section": "basic-info",
+      "properties": {
+        "jobProviderName": {
+          "type": "string",
+          "title": "Job Provider Name",
+          "description": "Enter job provider/company name",
+          "minLength": 1,
+          "pattern": "^\\s*\\S+\\s*$"
+        },
+        "jobProviderRegistration": {
+          "type": "string",
+          "title": "Job Provider Registration Details",
+          "description": "GST, CIN, TAN, PAN or other registration number",
+          "minLength": 1,
+          "pattern": "^.+$"
+        },
+        "jobProviderLocation": {
+          "type": "string",
+          "title": "Job Provider Location",
+          "description": "Enter job provider location",
+          "minLength": 1,
+          "pattern": "^\\s*\\S+\\s*$"
+        },
+        "jobProviderLogo": {
+          "type": "string",
+          "title": "Job Provider Logo",
+          "description": "Upload company logo (PNG, JPG, max 5MB)",
+          "format": "data-url"
+        }
+      },
+      "required": ["jobProviderName", "jobProviderLocation"]
+    },
+    "jobDetails": {
+      "type": "object",
+      "title": "Job Details",
+      "x-section": "job-details",
+      "properties": {
+        "title": {
+          "type": "string",
+          "title": "Job Title",
+          "description": "Job title (editable)",
+          "minLength": 1,
+          "pattern": "^\\s*\\S+\\s*$"
+        },
+        "jobType": {
+          "type": "array",
+          "title": "Job Type",
+          "description": "Select the type of job (e.g., Full-time, Part-time, Contract)",
+          "items": {
+            "type": "string",
+            "enum": ["Full-time", "Part-time", "Gig Work"],
+            "enumNames": ["Full-time", "Part-time", "Gig Work"]
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "hiringManagerName": {
+          "type": "string",
+          "title": "Hiring Manager Name",
+          "description": "Enter the name of the hiring manager"
+        },
+        "hiringManagerDesignation": {
+          "type": "string",
+          "title": "Hiring Manager Designation",
+          "description": "Enter the designation of the hiring manager"
+        },
+        "positions": {
+          "type": "integer",
+          "title": "Number of Openings",
+          "description": "How many positions are available?",
+          "minimum": 1,
+          "default": 1
+        },
+        "jobDetailsVideo": {
+          "type": "string",
+          "title": "Job Details Video",
+          "format": "data-url",
+          "description": "Upload video explaining job details (MOV, AVI, MP4, MKV, WMV, max 50MB)"
+        },
+        "jobStartTime": {
+          "type": "string",
+          "title": "Job Start Time",
+          "description": "Enter the job start time",
+          "format": "time"
+        },
+        "jobEndTime": {
+          "type": "string",
+          "title": "Job End Time",
+          "description": "Enter the job end time",
+          "format": "time"
+        },
+        "workingHoursPerDay": {
+          "type": "number",
+          "title": "Working Hours Per Day",
+          "description": "Enter working hours per day",
+          "minimum": 1,
+          "maximum": 24
+        },
+        "modeOfWork": {
+          "type": "array",
+          "title": "Mode of Work",
+          "description": "Select mode of work (multiple selections allowed)",
+          "items": {
+            "type": "string",
+            "enum": ["on-site-no-shift", "on-site-shifts", "remote", "hybrid", "travelling"],
+            "enumNames": ["On-site-no shift - standard work timings every working day", "On-site-shifts - work timings can change as per the shift one is assigned to", "Remote - work from home, no office space provided", "Hybrid - option to work from home, but presence expected on-site as per a prescribed schedule","Travelling - on the road job, requires travel"]
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "weeklyPayout": {
+          "type": "number",
+          "title": "Weekly Payout (INR)",
+          "description": "Enter weekly payout amount",
+          "minimum": 0,
+          "maximum": 100000
+        }
+      },
+      "required": ["title", "positions"]
+    },
+    "jobNeeds": {
+      "type": "object",
+      "title": "Job Needs",
+      "x-section": "job-needs",
+      "properties": {
+        "devicesSubsection": {
+          "type": "object",
+          "title": "Devices",
+          "x-subsection": "devices-subsection",
+          "x-ui-subsection": "border",
+          "properties": {
+            "minInternetSpeed": {
+              "type": "number",
+              "title": "Min Internet Speed (Mbps)",
+              "description": "Enter minimum internet speed required",
+              "minimum": 1,
+              "maximum": 1000
+            },
+            "minDevices": {
+              "type": "array",
+              "title": "Min Devices",
+              "description": "Select minimum devices required (multiple selections allowed)",
+              "items": {
+                "type": "string",
+                "enum": ["Smartphone", "Tablet", "Laptop", "Other"],
+                "enumNames": ["Smartphone", "Tablet", "Laptop", "Other"]
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "minDeviceOS": {
+              "type": "array",
+              "title": "Min Device OS",
+              "description": "Select minimum device OS required (multiple selections allowed)",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Android 6.0", "Android 7.0", "Android 7.1", "Android 8.0", "Android 8.1", 
+                  "Android 9", "Android 10", "Android 11", "Android 12", "Android 13", 
+                  "Android 14", "Android 15", "Android 16",
+                  "iOS 12", "iOS 13", "iOS 14", "iOS 15", "iOS 16", "iOS 17", "iOS 18",
+                  "Windows 10", "Windows 11", "Windows 7", "Windows 8", "Windows 8.1",
+                  "macOS 10.14 Mojave", "macOS 10.15 Catalina", "macOS 11 Big Sur", 
+                  "macOS 12 Monterey", "macOS 13 Ventura", "macOS 14 Sonoma", "macOS 15 Sequoia",
+                  "Ubuntu 18.04", "Ubuntu 20.04", "Ubuntu 22.04", "Ubuntu 24.04",
+                  "Chrome OS", "Linux", "Other"
+                ],
+                "enumNames": [
+                  "Android 6.0 (Marshmallow)", "Android 7.0 (Nougat)", "Android 7.1 (Nougat)", 
+                  "Android 8.0 (Oreo)", "Android 8.1 (Oreo)", "Android 9 (Pie)", 
+                  "Android 10", "Android 11", "Android 12", "Android 13", 
+                  "Android 14", "Android 15", "Android 16",
+                  "iOS 12", "iOS 13", "iOS 14", "iOS 15", "iOS 16", "iOS 17", "iOS 18",
+                  "Windows 10", "Windows 11", "Windows 7", "Windows 8", "Windows 8.1",
+                  "macOS 10.14 Mojave", "macOS 10.15 Catalina", "macOS 11 Big Sur", 
+                  "macOS 12 Monterey", "macOS 13 Ventura", "macOS 14 Sonoma", "macOS 15 Sequoia",
+                  "Ubuntu 18.04 LTS", "Ubuntu 20.04 LTS", "Ubuntu 22.04 LTS", "Ubuntu 24.04 LTS",
+                  "Chrome OS", "Linux (Other Distribution)", "Other"
+                ]
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            }
+          }
+        },
+        "languagesSubsection": {
+          "type": "object",
+          "title": "Languages",
+          "x-subsection": "languages-subsection",
+          "x-ui-subsection": "border",
+          "properties": {
+            "languagesKnown": {
+              "type": "array",
+              "title": "Must Known Languages",
+              "description": "Select languages known (multiple selections allowed)",
+              "items": {
+                "type": "string",
+                "enum": [
+                "Assamese",
+                "Bengali",
+                "Bodo",
+                "Dogri",
+                "English",
+                "Gujarati",
+                "Hindi",
+                "Kannada",
+                "Kashmiri",
+                "Konkani",
+                "Maithili",
+                "Malayalam",
+                "Manipuri",
+                "Marathi",
+                "Mizo",
+                "Nepali",
+                "Odia",
+                "Punjabi",
+                "Sanskrit",
+                "Santali",
+                "Sindhi",
+                "Tamil",
+                "Telugu",
+                "Urdu"
+              ],
+              "enumNames": [
+                "Assamese (অসমীয়া)",
+                "Bengali (বাংলা)",
+                "Bodo (बड़ो)",
+                "Dogri (डोगरी)",
+                "English",
+                "Gujarati (ગુજરાતી)",
+                "Hindi (हिन्दी)",
+                "Kannada (ಕನ್ನಡ)",
+                "Kashmiri (कॉशुर)",
+                "Konkani (कोंकणी)",
+                "Maithili (मैथिली)",
+                "Malayalam (മലയാളം)",
+                "Manipuri (মৈতৈলোন্)",
+                "Marathi (मराठी)",
+                "Mizo (Mizo ṭawng)",
+                "Nepali (नेपाली)",
+                "Odia (ଓଡ଼ିଆ)",
+                "Punjabi (ਪੰਜਾਬੀ)",
+                "Sanskrit (संस्कृतम्)",
+                "Santali (ᱥᱟᱱᱛᱟᱲᱤ)",
+                "Sindhi (سنڌي)",
+                "Tamil (தமிழ்)",
+                "Telugu (తెలుగు)",
+                "Urdu (اردو)"
+              ]
+            },
+            "uniqueItems": true,
+            "minItems": 1
+          }
+          }
+        },
+        "educationSubsection": {
+          "type": "object",
+          "title": "Education Qualification",
+          "x-subsection": "education-subsection",
+          "x-ui-subsection": "border",
+          "properties": {
+            "minEducationLevel": {
+              "type": "array",
+              "title": "Min. Highest Qualification Preferred",
+              "description": "Minimum highest qualification preferred (multiple selections allowed)",
+              "items": {
+                "type": "string",
+                "enum": ["10th Pass", "12th Pass", "ITI", "Diploma", "Graduate", "Other"],
+                "enumNames": ["10th Pass", "12th Pass", "ITI", "Diploma", "Graduate", "Other"]
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            }
+          }
+        },
+        "customerHandlingSubsection": {
+          "type": "object",
+          "title": "Customer Handling",
+          "x-subsection": "customer-handling-subsection",
+          "x-ui-subsection": "border",
+          "properties": {
+            "communicationSkillScore": {
+              "type": "string",
+              "title": "Communication Skill Score",
+              "description": "Enter the minimum acceptable communication skill score"
+            },
+            "domainKnowledge": {
+              "type": "array",
+              "title": "Domain Knowledge",
+              "description": "Select domain knowledge areas",
+              "items": {
+                "type": "string",
+                "enum": ["general", "cashcards", "electronics", "mobile-phones", "kitchen-appliances", "furniture", "other"],
+                "enumNames": ["General", "Cashcards", "Electronics", "Mobile Phones", "Kitchen Appliances", "Furniture", "Other"]
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "householdIncomePerAnnum": {
+              "type": "number",
+              "title": "Household Income Per Annum (INR)",
+              "description": "Enter household income per annum",
+              "minimum": 0,
+              "maximum": 10000000
+            }
+          }
+        }
+      }
+    }
+  }
+}
