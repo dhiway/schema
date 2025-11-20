@@ -1,0 +1,187 @@
+{
+  "@context": {
+    "@vocab": "https://example.org/iti-job#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@id": "https://example.org/iti-job",
+  "@type": "owl:Ontology",
+  "owl:imports": [],
+  "classes": [
+    {
+      "@id": "JobPosting",
+      "@type": "owl:Class"
+    },
+    {
+      "@id": "BasicInfo",
+      "@type": "owl:Class"
+    },
+    {
+      "@id": "JobDetails",
+      "@type": "owl:Class"
+    },
+    {
+      "@id": "JobNeeds",
+      "@type": "owl:Class"
+    },
+    {
+      "@id": "EducationSubsection",
+      "@type": "owl:Class"
+    },
+    {
+      "@id": "LanguagesSubsection",
+      "@type": "owl:Class"
+    }
+  ],
+  "objectProperties": [
+    {
+      "@id": "hasBasicInfo",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": "JobPosting",
+      "rdfs:range": "BasicInfo"
+    },
+    {
+      "@id": "hasJobDetails",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": "JobPosting",
+      "rdfs:range": "JobDetails"
+    },
+    {
+      "@id": "hasJobNeeds",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": "JobPosting",
+      "rdfs:range": "JobNeeds"
+    },
+    {
+      "@id": "hasEducation",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": "JobNeeds",
+      "rdfs:range": "EducationSubsection"
+    },
+    {
+      "@id": "hasLanguages",
+      "@type": "owl:ObjectProperty",
+      "rdfs:domain": "JobNeeds",
+      "rdfs:range": "LanguagesSubsection"
+    }
+  ],
+  "datatypeProperties": [
+    {
+      "@id": "jobProviderName",
+      "rdfs:domain": "BasicInfo",
+      "rdfs:range": "xsd:string"
+    },
+    {
+      "@id": "jobProviderType",
+      "rdfs:domain": "BasicInfo",
+      "rdfs:range": "xsd:string"
+    },
+    {
+      "@id": "jobProviderRegistration",
+      "rdfs:domain": "BasicInfo",
+      "rdfs:range": "xsd:string"
+    },
+    {
+      "@id": "jobProviderLocation",
+      "rdfs:domain": "BasicInfo",
+      "rdfs:range": "xsd:string"
+    },
+    {
+      "@id": "jobProviderLogo",
+      "rdfs:domain": "BasicInfo",
+      "rdfs:range": "xsd:anyURI"
+    },
+    {
+      "@id": "callBackTime",
+      "rdfs:domain": "JobDetails",
+      "rdfs:range": "xsd:string"
+    },
+    {
+      "@id": "title",
+      "rdfs:domain": "JobDetails",
+      "rdfs:range": "xsd:string"
+    },
+    {
+      "@id": "designation",
+      "rdfs:domain": "JobDetails",
+      "rdfs:range": "xsd:string"
+    },
+    {
+      "@id": "jobType",
+      "rdfs:domain": "JobDetails",
+      "rdfs:range": "xsd:string"
+    },
+    {
+      "@id": "validTill",
+      "rdfs:domain": "JobDetails",
+      "rdfs:range": "xsd:date"
+    },
+    {
+      "@id": "positions",
+      "rdfs:domain": "JobDetails",
+      "rdfs:range": "xsd:integer"
+    },
+    {
+      "@id": "jobDescription",
+      "rdfs:domain": "JobDetails",
+      "rdfs:range": "xsd:string"
+    },
+    {
+      "@id": "workingHoursPerDay",
+      "rdfs:domain": "JobDetails",
+      "rdfs:range": "xsd:decimal"
+    },
+    {
+      "@id": "minMonthlyInHand",
+      "rdfs:domain": "JobDetails",
+      "rdfs:range": "xsd:decimal"
+    },
+    {
+      "@id": "maxMonthlyInHand",
+      "rdfs:domain": "JobDetails",
+      "rdfs:range": "xsd:decimal"
+    },
+    {
+      "@id": "foodProvided",
+      "rdfs:domain": "JobDetails",
+      "rdfs:range": "xsd:string"
+    },
+    {
+      "@id": "ageAllowedLowerLimit",
+      "rdfs:domain": "JobNeeds",
+      "rdfs:range": "xsd:integer"
+    },
+    {
+      "@id": "ageAllowedUpperLimit",
+      "rdfs:domain": "JobNeeds",
+      "rdfs:range": "xsd:integer"
+    },
+    {
+      "@id": "genderPreference",
+      "rdfs:domain": "JobNeeds",
+      "rdfs:range": "xsd:string"
+    },
+    {
+      "@id": "minEducationLevel",
+      "rdfs:domain": "EducationSubsection",
+      "rdfs:range": "xsd:string"
+    },
+    {
+      "@id": "itiSpecialtyPreference",
+      "rdfs:domain": "EducationSubsection",
+      "rdfs:range": "xsd:string"
+    },
+    {
+      "@id": "skillsRequired",
+      "rdfs:domain": "EducationSubsection",
+      "rdfs:range": "xsd:string"
+    },
+    {
+      "@id": "languagesKnown",
+      "rdfs:domain": "LanguagesSubsection",
+      "rdfs:range": "xsd:string"
+    }
+  ]
+}
