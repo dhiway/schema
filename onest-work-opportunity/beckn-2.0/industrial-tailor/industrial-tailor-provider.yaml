@@ -1,14 +1,18 @@
-openapi: 3.1.0
+openapi: 3.1.1
 info:
-  title: Generic ITI Job Posting API
+  title: Generic ITI Job Posting
   version: 1.0.0
-
+  description:
+    Attribute schemas for generic ITI job posting (Item.attributes).
+    These attributes are attached to Item.attributes to provide contextual 
+    details of a generic ITI job posting made via onest jobstack.
 jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
-
-paths: {}
 
 components:
   schemas:
+    ########################################################################
+    # ITEM.ATTRIBUTES — ITIJobPosting
+    ########################################################################
     GenericITIJobPosting:
       type: object
       title: Generic ITI Job Posting
@@ -165,7 +169,7 @@ components:
                       - Additive Manufacturing Technician Three D Painting
                       - Additive Manufacturing Technician Three D Printing (NSQF)
                       - ADVANCED CNC MACHINING TECHNICIAN (NSQF)
-                      # (rest of the ITI list… omitted for brevity but include in your file)
+                      - OTHER
                   minItems: 1
                   uniqueItems: true
                 skillsRequired:
