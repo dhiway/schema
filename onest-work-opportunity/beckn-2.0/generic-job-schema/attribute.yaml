@@ -1,0 +1,22 @@
+openapi: 3.1.1
+info:
+  title: Generic Job Posting Base Schema
+  version: 1.0.0
+jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
+components:
+  schemas:
+    GenericJobPostingBase:
+      type: object
+      title: Generic Job Posting (Base)
+      description: Base schema used by all job types before extensions.
+      properties:
+        providerInfo:
+          $ref: '../core/provider-info.yaml#/components/schemas/ProviderInfo'
+        jobDetails:
+          $ref: '../core/job-details.yaml#/components/schemas/JobDetails'
+        jobRequirements:
+          $ref: '../core/job-requirements.yaml#/components/schemas/JobNeeds'
+      required:
+        - providerInfo
+        - jobDetails
+        - jobRequirements

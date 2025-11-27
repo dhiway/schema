@@ -1,0 +1,60 @@
+openapi: 3.1.1
+info:
+  title: Job Details
+  version: 1.0.0
+jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
+components:
+  schemas:
+    JobDetails:
+      type: object
+      title: Job Details
+      properties:
+        title:
+          type: string
+          description: Job title as shown to seekers.
+          minLength: 1
+        designation:
+          type: string
+          description: Job designation/role.
+        description:
+          type: string
+          description: Full job description.
+          minLength: 10
+          maxLength: 2000
+        jobType:
+          type: array
+          items:
+            type: string
+            enum: [Full-time, Part-time, Contract, Apprenticeship]
+          minItems: 1
+          uniqueItems: true
+        modeOfWork:
+          type: array
+          items:
+            type: string
+            enum: [on-site, on-site-shifts, remote, hybrid, travelling]
+          minItems: 1
+          uniqueItems: true
+        positions:
+          type: integer
+          minimum: 1
+          default: 1
+        workingHoursPerDay:
+          type: number
+          minimum: 1
+          maximum: 24
+        salaryMin:
+          type: number
+        salaryMax:
+          type: number
+        locationPhotos:
+          type: array
+          items:
+            type: string
+            format: data-url
+        videoIntro:
+          type: string
+          format: data-url
+      required:
+        - title
+        - positions

@@ -1,0 +1,42 @@
+openapi: 3.1.1
+info:
+  title: Provider Info Schema
+  version: 1.0.0
+jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
+components:
+  schemas:
+    ProviderInfo:
+      type: object
+      title: Job Provider Information
+      description: |
+        Common employer/provider attributes for any job posting.
+        This schema is shared across all job types.
+      properties:
+        providerName:
+          type: string
+          title: Provider Name
+          description: Legal or brand name of the employer/company.
+          minLength: 1
+          pattern: "^[\\s\\S]*\\S[\\s\\S]*$"
+        providerType:
+          type: string
+          title: Provider Type
+          description: Classification of the employer (factory, workshop, company, agency, MSME, etc.)
+        providerRegistrationNumber:
+          type: string
+          title: Registration Number
+          description: GST, CIN, PAN, UAN, or any government-issued registration identifier.
+        providerLocation:
+          type: string
+          title: Provider Location
+          description: Primary work location or office address.
+          minLength: 1
+          pattern: "^[\\s\\S]*\\S[\\s\\S]*$"
+        providerLogo:
+          type: string
+          title: Provider Logo
+          description: Company logo encoded as data URL.
+          format: data-url
+      required:
+        - providerName
+        - providerLocation

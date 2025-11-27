@@ -1,0 +1,68 @@
+openapi: 3.1.1
+info:
+  title: Job Requirements
+  version: 1.0.0
+jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
+components:
+  schemas:
+    JobRequirements:
+      type: object
+      title: Job Requirements
+      properties:
+        ageLowerLimit:
+          type: integer
+          minimum: 18
+          maximum: 100
+        ageUpperLimit:
+          type: integer
+          minimum: 18
+          maximum: 100
+        genderPreference:
+          type: string
+          enum: [Male, Female, Other, No Preference]
+        education:
+          type: object
+          properties:
+            minEducationLevel:
+              type: array
+              items:
+                type: string
+                enum: ['10th Pass', '12th Pass', 'ITI', 'Diploma', 'Graduate', 'Postgraduate', 'Other']
+              minItems: 1
+              uniqueItems: true
+            skillsRequired:
+              type: string
+        languages:
+          type: object
+          properties:
+            languagesKnown:
+              type: array
+              items:
+                type: string
+                enum:
+                  - Assamese
+                  - Bengali
+                  - Bodo
+                  - Dogri
+                  - English
+                  - Gujarati
+                  - Hindi
+                  - Kannada
+                  - Kashmiri
+                  - Konkani
+                  - Maithili
+                  - Malayalam
+                  - Manipuri
+                  - Marathi
+                  - Mizo
+                  - Nepali
+                  - Odia
+                  - Punjabi
+                  - Sanskrit
+                  - Santali
+                  - Sindhi
+                  - Tamil
+                  - Telugu
+                  - Urdu
+              minItems: 1
+              uniqueItems: true
