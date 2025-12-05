@@ -1,0 +1,84 @@
+openapi: 3.1.1
+info:
+  title: Industrial Tailor Job Posting Schema
+  version: 1.0.0
+jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
+x-jsonld-context:
+  '@context': {}
+components:
+  schemas:
+    IndustrialTailorJobPosting:
+      allOf:
+        - $ref: '../generic-job-schema/attribute.yaml#/components/schemas/GenericJobPostingBase'
+        - type: object
+          title: 'Industrial Tailor Job Posting (Extension)'
+          properties:
+            industrialTailorRequirements:
+              type: object
+              title: 'Industrial Tailor Requirements'
+              x-section: 'industrial-tailor-requirements'
+              properties:
+                stayProvided:
+                  type: string
+                  title: 'Stay Provided'
+                  enum: ['yes-free', 'yes-paid', 'no']
+                  enumNames: ['Yes - Free', 'Yes - Paid', 'No']
+                costPerSharingBed:
+                  type: string
+                  title: 'Cost per Sharing Bed (If stay is paid)'
+                monthlyAverageOT:
+                  type: string
+                  title: 'Monthly Average OT (Overtime)'
+                # JUKI MACHINE ASSESSMENT
+                jukiMachineStraightLineAssessment:
+                  type: object
+                  title: 'Juki Machine - Straight Line Stitch Assessment'
+                  x-subsection: 'juki-machine-stitch'
+                  x-ui-subsection: 'border'
+                  properties:
+                    selectionCriteria:
+                      type: string
+                      title: 'Selection Criteria - Quality'
+                      enum: ['Pass', 'Fail']
+                      enumNames: ['Pass', 'Fail']
+                    selectionCriteriaTimeAllowed:
+                      type: number
+                      title: 'Selection Criteria – Max Time Allowed (minutes)'
+                      minimum: 0
+                    uploadSampleMedia:
+                      type: array
+                      title: 'Upload Reference Images'
+                      items:
+                        type: string
+                        format: data-url
+                      maxItems: 5
+                # EDUCATIONAL & AGE LIMITS (Specific overrides)
+                ageAllowedLowerLimit:
+                  type: integer
+                  minimum: 18
+                  maximum: 100
+                ageAllowedUpperLimit:
+                  type: integer
+                  minimum: 18
+                  maximum: 100
+              required:
+                - stayProvided
+                - jukiMachineStraightLineAssessment
+          # Additional validation (stayProvided dependency on costPerSharingBed)
+          allOf:
+            - if:
+                properties:
+                  industrialTailorRequirements:
+                    properties:
+                      stayProvided:
+                        enum: ['yes-paid']
+              then:
+                properties:
+                  industrialTailorRequirements:
+                    required: ['costPerSharingBed']
+    # Beckn Item.attributes wrapper
+    Attribute:
+      type: object
+      properties:
+        workOpportunity:
+          $ref: '#/components/schemas/IndustrialTailorJobPosting'

@@ -1,0 +1,90 @@
+openapi: 3.1.1
+info:
+  title: Data Entry Operator Job Posting Schema
+  version: 1.0.0
+jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
+x-jsonld-context:
+  '@context': {}
+components:
+  schemas:
+    DataEntryJobPosting:
+      allOf:
+        - $ref: '../generic-job-schema/attribute.yaml#/components/schemas/GenericJobPostingBase'
+        - type: object
+          title: Data Entry Operator Job Posting (Extension)
+          properties:
+            dataEntryRequirements:
+              type: object
+              title: 'Data Entry – Job Specific Requirements'
+              properties:
+                softwareKnowledgePreferred:
+                  type: array
+                  items:
+                    type: string
+                    enum: ['Google Suite', 'Excel', 'Tally', 'Other']
+                  minItems: 1
+                  uniqueItems: true
+                highestQualification:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                      - '10th'
+                      - '12th'
+                      - '3 year Undergraduate Degree'
+                      - '4 year Undergraduate Degree'
+                      - 'Postgraduate and above'
+                  minItems: 1
+                  uniqueItems: true
+                languagesKnown:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                      - Assamese
+                      - Bengali
+                      - Bodo
+                      - Dogri
+                      - English
+                      - Gujarati
+                      - Hindi
+                      - Kannada
+                      - Kashmiri
+                      - Konkani
+                      - Maithili
+                      - Malayalam
+                      - Manipuri
+                      - Marathi
+                      - Mizo
+                      - Nepali
+                      - Odia
+                      - Punjabi
+                      - Sanskrit
+                      - Santali
+                      - Sindhi
+                      - Tamil
+                      - Telugu
+                      - Urdu
+                  minItems: 1
+                  uniqueItems: true
+                typingSpeedWPM:
+                  type: number
+                  title: 'Typing Speed (Words per Minute)'
+                  minimum: 0
+                  maximum: 200
+                numericTypingSpeedWPM:
+                  type: number
+                  title: 'Numeric Typing Speed (Words per Minute)'
+                  minimum: 0
+                  maximum: 200
+              required:
+                - softwareKnowledgePreferred
+                - highestQualification
+          required:
+            - dataEntryRequirements
+    # Beckn: item.attributes entry point
+    Attribute:
+      type: object
+      properties:
+        workOpportunity:
+          $ref: '#/components/schemas/DataEntryJobPosting'

@@ -1,0 +1,152 @@
+openapi: 3.1.1
+info:
+  title: Generic ITI Job Posting Schema
+  version: 1.0.0
+jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
+x-jsonld-context:
+  '@context': {}
+components:
+  schemas:
+    ITIJobPosting:
+      allOf:
+        - $ref: '../generic-job-schema/attribute.yaml#/components/schemas/GenericJobPostingBase'
+        - type: object
+          title: 'Generic ITI Job Posting (Extension)'
+          properties:
+            itiRequirements:
+              type: object
+              title: 'ITI Requirements'
+              x-section: 'iti-requirements'
+              properties:
+                # AGE RULES
+                ageAllowedLowerLimit:
+                  type: integer
+                  minimum: 18
+                  maximum: 100
+                ageAllowedUpperLimit:
+                  type: integer
+                  minimum: 18
+                  maximum: 100
+                # GENDER
+                genderPreference:
+                  type: string
+                  enum: ['Male', 'Female', 'Other', 'No Preference']
+                # EDUCATIONAL REQUIREMENTS
+                minEducationLevel:
+                  type: array
+                  title: 'Minimum Education Level'
+                  items:
+                    type: string
+                    enum: ['10th Pass', '12th Pass', 'ITI', 'Diploma', 'Graduate', 'Other']
+                  uniqueItems: true
+                  minItems: 1
+                # MASSIVE ITI SPECIALTY LIST
+                itiSpecialtyPreference:
+                  type: array
+                  title: 'ITI Specializations Preferred'
+                  items:
+                    type: string
+                    enum:
+                      - Additive Manufacturing Technician Three D Painting
+                      - Additive Manufacturing Technician Three D Printing (NSQF)
+                      - ADVANCED CNC MACHINING TECHNICIAN (NSQF)
+                      - Aeronautical Structure and Equipment Fitter (NSQF)
+                      - Agro Processing (NSQF)
+                      - Architectural Draughtsman (NSQF)
+                      - Artificial Intelligence Programming Assistant (NSQF)
+                      - ARTISAN USING ADVANCED TOOL (NSQF)
+                      - Attendant Operator (Chemical Plant) (NSQF)
+                      - Baker and Confectioner (NSQF)
+                      - Bamboo Works (NSQF)
+                      - BASIC DESIGNER AND VIRTUAL VERIFIER (MECHANICAL) (NSQF)
+                      - Catering & Hospitality Assistant (NSQF)
+                      - CENTRAL AIRCONDITION PLANT MECHANIC(NSQF)
+                      - Civil Engineer Assistant (NSQF)
+                      - Computer Aided Embroidery And Designing (NSQF)
+                      - Computer Aided Manufacturing (CAM) Programmer (NSQF)
+                      - Computer Hardware & Network Maintenance (NSQF)
+                      - Computer Operator & Programming Assistant (VI & OD) (NSQF)
+                      - Computer Operator and Programming Assistant
+                      - Cosmetology (NSQF)
+                      - Cutting & Sewing (NSQF)
+                      - Dairying
+                      - Data Base System Assistant (NSQF)
+                      - Data Entry Operator (NSQF)
+                      - Dental Laboratory Equipment Technician (NSQF)
+                      - Draftsman Civil (NSQF)
+                      - Draftsman Mechanical (NSQF)
+                      - Dress Making (NSQF)
+                      - Driver Cum Mechanic (NSQF)
+                      - Drone Technician (NSQF)
+                      - Electrician (NSQF)
+                      - Electronics Mechanic (NSQF)
+                      - Fitter
+                      - Fitter (NSQF)
+                      - Foundryman (NSQF)
+                      - Machinist (NSQF)
+                      - Machinist (Grinder) (NSQF)
+                      - Mechanic Diesel (NSQF)
+                      - Mechanic Motor Vehicle (NSQF)
+                      - Mechanic Mechatronics (NSQF)
+                      - Mechanic Auto Body Repair (NSQF)
+                      - Plumber (NSQF)
+                      - Pump Operator-Cum-Mechanic (NSQF)
+                      - Refrigeration and AC Technician (NSQF)
+                      - Solar Technician (NSQF)
+                      - Technician Power Electronics System (NSQF)
+                      - Tool & Die Maker (NSQF)
+                      - Turner (NSQF)
+                      - Welder (NSQF)
+                      - Wireman (NSQF)
+                      - Wood Work Technician (NSQF)
+                      - Other
+                  uniqueItems: true
+                  minItems: 1
+                # SKILLS
+                skillsRequired:
+                  type: string
+                  title: 'Skills Required'
+                # LANGUAGES
+                languagesKnown:
+                  type: array
+                  title: 'Languages Known'
+                  items:
+                    type: string
+                    enum:
+                      - Assamese
+                      - Bengali
+                      - Bodo
+                      - Dogri
+                      - English
+                      - Gujarati
+                      - Hindi
+                      - Kannada
+                      - Kashmiri
+                      - Konkani
+                      - Maithili
+                      - Malayalam
+                      - Manipuri
+                      - Marathi
+                      - Mizo
+                      - Nepali
+                      - Odia
+                      - Punjabi
+                      - Sanskrit
+                      - Santali
+                      - Sindhi
+                      - Tamil
+                      - Telugu
+                      - Urdu
+                  minItems: 1
+                  uniqueItems: true
+              required:
+                - minEducationLevel
+                - itiSpecialtyPreference
+          required:
+            - itiRequirements
+    # Entry point for Beckn Item.attributes
+    Attribute:
+      type: object
+      properties:
+        workOpportunity:
+          $ref: '#/components/schemas/ITIJobPosting'

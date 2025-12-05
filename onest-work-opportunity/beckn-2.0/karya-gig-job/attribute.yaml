@@ -1,0 +1,185 @@
+openapi: 3.1.1
+info:
+  title: Karya Gig Job Posting Schema
+  version: 1.0.0
+jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
+x-jsonld-context:
+  '@context': {}
+components:
+  schemas:
+    KaryaGigJobPosting:
+      allOf:
+        - $ref: '../generic-job-schema/attribute.yaml#/components/schemas/GenericJobPostingBase'
+        - type: object
+          title: 'Karya Gig Job Posting (Extension)'
+          properties:
+            karyaGigRequirements:
+              type: object
+              x-section: 'karya-gig-requirements'
+              title: 'Karya Gig Requirements'
+              properties:
+                jobType:
+                  type: array
+                  title: 'Job Type'
+                  items:
+                    type: string
+                    enum: ['Full-time', 'Part-time', 'Gig Work']
+                  uniqueItems: true
+                  minItems: 1
+                jobStartTime:
+                  type: string
+                  title: 'Job Start Time'
+                  format: time
+                jobEndTime:
+                  type: string
+                  title: 'Job End Time'
+                  format: time
+                weeklyPayout:
+                  type: number
+                  title: 'Weekly Payout (INR)'
+                  minimum: 0
+                  maximum: 100000
+                # ---- DEVICES REQUIREMENTS ----
+                devices:
+                  type: object
+                  title: 'Devices Required'
+                  x-subsection: 'devices-subsection'
+                  x-ui-subsection: 'border'
+                  properties:
+                    minInternetSpeed:
+                      type: number
+                      title: 'Minimum Internet Speed (Mbps)'
+                      minimum: 1
+                      maximum: 1000
+                    minDevices:
+                      type: array
+                      title: 'Minimum Devices'
+                      items:
+                        type: string
+                        enum: ['Smartphone', 'Tablet', 'Laptop', 'Other']
+                      uniqueItems: true
+                      minItems: 1
+                    minDeviceOS:
+                      type: array
+                      title: 'Minimum Device OS'
+                      items:
+                        type: string
+                        enum:
+                          - 'Android 6.0'
+                          - 'Android 7.0'
+                          - 'Android 7.1'
+                          - 'Android 8.0'
+                          - 'Android 8.1'
+                          - 'Android 9'
+                          - 'Android 10'
+                          - 'Android 11'
+                          - 'Android 12'
+                          - 'Android 13'
+                          - 'Android 14'
+                          - 'Android 15'
+                          - 'Android 16'
+                          - 'iOS 12'
+                          - 'iOS 13'
+                          - 'iOS 14'
+                          - 'iOS 15'
+                          - 'iOS 16'
+                          - 'iOS 17'
+                          - 'iOS 18'
+                          - 'Windows 10'
+                          - 'Windows 11'
+                          - 'Windows 7'
+                          - 'Windows 8'
+                          - 'Windows 8.1'
+                          - 'macOS 10.14 Mojave'
+                          - 'macOS 10.15 Catalina'
+                          - 'macOS 11 Big Sur'
+                          - 'macOS 12 Monterey'
+                          - 'macOS 13 Ventura'
+                          - 'macOS 14 Sonoma'
+                          - 'macOS 15 Sequoia'
+                          - 'Ubuntu 18.04'
+                          - 'Ubuntu 20.04'
+                          - 'Ubuntu 22.04'
+                          - 'Ubuntu 24.04'
+                          - 'Chrome OS'
+                          - 'Linux'
+                          - 'Other'
+                      uniqueItems: true
+                      minItems: 1
+                # ---- LANGUAGES ----
+                languagesKnown:
+                  type: array
+                  title: 'Languages Required'
+                  items:
+                    type: string
+                    enum:
+                      - Assamese
+                      - Bengali
+                      - Bodo
+                      - Dogri
+                      - English
+                      - Gujarati
+                      - Hindi
+                      - Kannada
+                      - Kashmiri
+                      - Konkani
+                      - Maithili
+                      - Malayalam
+                      - Manipuri
+                      - Marathi
+                      - Mizo
+                      - Nepali
+                      - Odia
+                      - Punjabi
+                      - Sanskrit
+                      - Santali
+                      - Sindhi
+                      - Tamil
+                      - Telugu
+                      - Urdu
+                  uniqueItems: true
+                  minItems: 1
+                minEducationLevel:
+                  type: array
+                  title: 'Minimum Education Level'
+                  items:
+                    type: string
+                    enum: ['10th Pass', '12th Pass', 'ITI', 'Diploma', 'Graduate', 'Other']
+                  uniqueItems: true
+                  minItems: 1
+                communicationSkillScore:
+                  type: string
+                  title: 'Communication Skill Score'
+                domainKnowledge:
+                  type: array
+                  title: 'Domain Knowledge'
+                  items:
+                    type: string
+                    enum:
+                      - general
+                      - cashcards
+                      - electronics
+                      - mobile-phones
+                      - kitchen-appliances
+                      - furniture
+                      - other
+                  uniqueItems: true
+                  minItems: 1
+                householdIncomePerAnnum:
+                  type: number
+                  title: 'Household Income Per Annum (INR)'
+                  minimum: 0
+                  maximum: 10000000
+              required:
+                - jobType
+                - weeklyPayout
+                - minEducationLevel
+                - languagesKnown
+          required:
+            - karyaGigRequirements
+    # Beckn attribute entry point for Item.attributes
+    Attribute:
+      type: object
+      properties:
+        workOpportunity:
+          $ref: '#/components/schemas/KaryaGigJobPosting'

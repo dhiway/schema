@@ -1,0 +1,119 @@
+openapi: 3.1.1
+info:
+  title: Field Sales Person Job Posting Schema
+  version: 1.0.0
+jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
+x-jsonld-context:
+  '@context': {}
+components:
+  schemas:
+    FieldSalesJobPosting:
+      allOf:
+        - $ref: '../generic-job-schema/attribute.yaml#/components/schemas/GenericJobPostingBase'
+        - type: object
+          title: 'Field Sales Job Posting (Extension)'
+          properties:
+            fieldSalesRequirements:
+              type: object
+              title: 'Field Sales Requirements'
+              x-section: 'field-sales-requirements'
+              properties:
+                dailyTravelRequiredKm:
+                  type: number
+                  title: 'Daily Travel Required (in Kms)'
+                  description: 'Enter daily travel distance in kilometers'
+                  default: 0
+                monthlyTravellingAllowance:
+                  type: number
+                  title: 'Monthly Travelling Allowance (INR)'
+                  description: 'Enter monthly travelling allowance'
+                  minimum: 0
+                monthlyIncentivePossible:
+                  type: number
+                  title: 'Monthly Incentive Possible (INR)'
+                  minimum: 0
+                communicationSkillScore:
+                  type: string
+                  title: 'Communication Skill Score'
+                  description: 'Minimum acceptable communication skill level'
+                vehicleOwnershipRequirement:
+                  type: array
+                  title: 'Vehicle Ownership Requirement'
+                  items:
+                    type: string
+                    enum: ['motor-bike', 'car', 'other']
+                  uniqueItems: true
+                  minItems: 1
+                domainKnowledge:
+                  type: array
+                  title: 'Domain Knowledge Required'
+                  items:
+                    type: string
+                    enum:
+                      - 'general'
+                      - 'cashcards'
+                      - 'electronics'
+                      - 'mobile-phones'
+                      - 'kitchen-appliances'
+                      - 'furniture'
+                      - 'other'
+                  uniqueItems: true
+                  minItems: 1
+                highestQualification:
+                  type: array
+                  title: 'Minimum Highest Qualification Preferred'
+                  items:
+                    type: string
+                    enum:
+                      - '10th'
+                      - '12th'
+                      - '3 year Undergraduate Degree'
+                      - '4 year Undergraduate Degree'
+                      - 'Postgraduate and above'
+                  uniqueItems: true
+                  minItems: 1
+                languagesKnown:
+                  type: array
+                  title: 'Languages Known'
+                  description: 'Languages required for customer interaction'
+                  items:
+                    type: string
+                    enum:
+                      - Assamese
+                      - Bengali
+                      - Bodo
+                      - Dogri
+                      - English
+                      - Gujarati
+                      - Hindi
+                      - Kannada
+                      - Kashmiri
+                      - Konkani
+                      - Maithili
+                      - Malayalam
+                      - Manipuri
+                      - Marathi
+                      - Mizo
+                      - Nepali
+                      - Odia
+                      - Punjabi
+                      - Sanskrit
+                      - Santali
+                      - Sindhi
+                      - Tamil
+                      - Telugu
+                      - Urdu
+                  minItems: 1
+                  uniqueItems: true
+              required:
+                - highestQualification
+                - languagesKnown
+                - domainKnowledge
+          required:
+            - fieldSalesRequirements
+    # Beckn Item.attributes wrapper
+    Attribute:
+      type: object
+      properties:
+        workOpportunity:
+          $ref: '#/components/schemas/FieldSalesJobPosting'

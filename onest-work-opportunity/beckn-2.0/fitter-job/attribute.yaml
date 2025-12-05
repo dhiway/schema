@@ -1,0 +1,116 @@
+openapi: 3.1.1
+info:
+  title: Fitter Job Posting Schema
+  version: 1.0.0
+jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
+x-jsonld-context:
+  '@context': {}
+components:
+  schemas:
+    FitterJobPosting:
+      allOf:
+        - $ref: '../generic-job-schema/attribute.yaml#/components/schemas/GenericJobPostingBase'
+        - type: object
+          title: 'Fitter Job Posting (Extension)'
+          properties:
+            fitterRequirements:
+              type: object
+              x-section: 'fitter-requirements'
+              title: 'Fitter Requirements'
+              properties:
+                itiSpecialtyPreference:
+                  type: array
+                  title: 'Preferred ITI Specialty'
+                  items:
+                    type: string
+                    enum:
+                      - Fitter
+                      - Fitter (NSQF)
+                      - Machinist
+                      - Turner
+                      - Welder
+                      - Mechanic Diesel
+                      - Mechanic Motor Vehicle
+                      - Tool & Die Maker
+                      - Sheet Metal Worker
+                      - CNC Operator
+                      - Advanced CNC Machining Technician (NSQF)
+                      - Maintenance Mechanic (Chemical Plant)
+                      - Pump Operator-cum-Mechanic
+                      - Other
+                  uniqueItems: true
+                  minItems: 1
+                skillsRequired:
+                  type: string
+                  title: 'Skills Required'
+                  description: 'Enter the key skills required for the Fitter role'
+                languagesKnown:
+                  type: array
+                  title: 'Languages Known'
+                  description: 'Languages required for this job'
+                  items:
+                    type: string
+                    enum:
+                      - Assamese
+                      - Bengali
+                      - Bodo
+                      - Dogri
+                      - English
+                      - Gujarati
+                      - Hindi
+                      - Kannada
+                      - Kashmiri
+                      - Konkani
+                      - Maithili
+                      - Malayalam
+                      - Manipuri
+                      - Marathi
+                      - Mizo
+                      - Nepali
+                      - Odia
+                      - Punjabi
+                      - Sanskrit
+                      - Santali
+                      - Sindhi
+                      - Tamil
+                      - Telugu
+                      - Urdu
+                  minItems: 1
+                  uniqueItems: true
+                minEducationLevel:
+                  type: array
+                  title: 'Minimum Education Level'
+                  items:
+                    type: string
+                    enum:
+                      - '10th Pass'
+                      - '12th Pass'
+                      - 'ITI'
+                      - 'Diploma'
+                      - 'Graduate'
+                      - 'Other'
+                  uniqueItems: true
+                  minItems: 1
+                genderPreference:
+                  type: string
+                  title: 'Gender Preference'
+                  enum: ['Male', 'Female', 'Other', 'No Preference']
+                ageAllowedLowerLimit:
+                  type: integer
+                  minimum: 18
+                  maximum: 100
+                ageAllowedUpperLimit:
+                  type: integer
+                  minimum: 18
+                  maximum: 100
+              required:
+                - itiSpecialtyPreference
+                - minEducationLevel
+          required:
+            - fitterRequirements
+    # Beckn Item.attributes wrapper
+    Attribute:
+      type: object
+      properties:
+        workOpportunity:
+          $ref: '#/components/schemas/FitterJobPosting'
