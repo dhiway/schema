@@ -102,16 +102,6 @@
             "when": ["Worked before", "Returning after a break"]
           }
         },
-        "highestEducationalInstituteAttended": {
-          "type": "string",
-          "title": "Highest Educational Institute Attended",
-          "description": "Which of the options best describes the source of your skills that can help you get a job",
-          "enum": ["School", "College", "ITI", "Other Vocational Training", "Certifications", "None"],
-          "enumNames": ["School", "College", "ITI", "Other Vocational Training", "Certifications", "None"],
-          "ui:widget": "select",
-          "ui:placeholder": "Select highest educational institute attended",
-          "ui:disabled": false
-        },
         "highestQualificationOrSkill": {
           "type": "object",
           "title": "Highest Qualification or Skill",
@@ -156,12 +146,11 @@
           "ui:disabled": false
         }
       },
-      "required": ["workExperience", "highestEducationalInstituteAttended", "highestQualificationOrSkill"],
+      "required": ["workExperience", "highestQualificationOrSkill"],
       "ui": {
         "order": [
           "workExperience",
           "workExperienceYearsConditional",
-          "highestEducationalInstituteAttended",
           "highestQualificationOrSkill",
           "workExperienceYears",
           "nameOfLastRoleHeld"
@@ -174,7 +163,7 @@
           },
           {
             "title": "Education & Qualifications",
-            "fields": ["highestEducationalInstituteAttended", "highestQualificationOrSkill"]
+            "fields": ["highestQualificationOrSkill"]
           }
         ]
       }
