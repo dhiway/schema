@@ -4,6 +4,15 @@
   "description": "Complete profile schema for Any role",
   "type": "object",
   "properties": {
+     "role": {
+      "type": "string",
+      "title": "Role",
+      "description": "Enter your role or job title",
+      "required": false,
+      "ui:widget": "text",
+      "ui:placeholder": "Enter your role",
+      "ui:disabled": false
+    },
     "whoIAm": {
       "type": "object",
       "title": "Who I Am",
