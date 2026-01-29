@@ -1,0 +1,407 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/schemas/beneficiary.schema.json",
+  "title": "Beneficiary Profile",
+  "description": "Complete profile schema for beneficiaries with support for Student and PwD sub-types",
+  "type": "object",
+  "required": [
+    "whoIAm",
+    "whatIWant",
+    "whatIHave"
+  ],
+  "properties": {
+    "whoIAm": {
+      "type": "object",
+      "title": "WHO I AM",
+      "description": "Basic identity and consent information",
+      "required": [
+        "ageBand",
+        "personaType",
+        "consentScope",
+        "name",
+        "contact"
+      ],
+      "properties": {
+        "ageBand": {
+          "type": "string",
+          "title": "Age group",
+          "description": "Age classification for consent & routing logic",
+          "enum": [
+            "Below 18",
+            "Above 18"
+          ],
+          "x-signal-action": [
+            "broadcast"
+          ],
+          "x-ui-widget": "select"
+        },
+        "gender": {
+          "type": "string",
+          "title": "Gender",
+          "description": "Self-identified gender",
+          "enum": [
+            "Male",
+            "Female",
+            "Other"
+          ],
+          "x-signal-action": [
+            "broadcast",
+            "tune"
+          ],
+          "x-ui-widget": "select"
+        },
+        "personaType": {
+          "type": "array",
+          "title": "Who are you?",
+          "description": "High-level persona classification (can select multiple)",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Student",
+              "Worker",
+              "PwD",
+              "Senior Citizens"
+            ]
+          },
+          "uniqueItems": true,
+          "minItems": 1,
+          "x-signal-action": [
+            "broadcast"
+          ],
+          "x-ui-widget": "checkboxes"
+        },
+        "consentScope": {
+          "type": "string",
+          "title": "Permission for profile usage",
+          "description": "Permission to be discovered and represented",
+          "enum": [
+            "Profile Creation",
+            "Sharing to others in the ecosystem"
+          ],
+          "x-signal-action": [
+            "broadcast"
+          ],
+          "x-ui-widget": "select"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name",
+          "description": "Beneficiary name",
+          "minLength": 1,
+          "maxLength": 100,
+          "x-signal-action": [
+            "respond"
+          ]
+        },
+        "contact": {
+          "type": "string",
+          "title": "Contact Number",
+          "description": "Mobile number of beneficiary (18+) or guardian (if minor / on-behalf)",
+          "pattern": "^[+]?[0-9]{10,15}$",
+          "x-signal-action": [
+            "respond"
+          ],
+          "x-ui-placeholder": "+91-XXXXXXXXXX"
+        }
+      }
+    },
+    "whatIWant": {
+      "type": "object",
+      "title": "WHAT I WANT",
+      "description": "Support needs and requirements",
+      "required": [
+        "needCategory"
+      ],
+      "properties": {
+        "needCategory": {
+          "type": "array",
+          "title": "Needs",
+          "description": "Broad category of support required",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Financial Aid",
+              "Education & Personal Development",
+              "Employment",
+              "Upskilling",
+              "Health",
+              "Assistive Devices",
+              "In-kind",
+              "Other"
+            ]
+          },
+          "uniqueItems": true,
+          "minItems": 1,
+          "x-signal-action": [
+            "broadcast",
+            "tune"
+          ],
+          "x-ui-widget": "checkboxes"
+        },
+        "urgency": {
+          "type": "string",
+          "title": "Urgency",
+          "description": "Time sensitivity of need",
+          "enum": [
+            "Immediate",
+            "Soon",
+            "Flexible"
+          ],
+          "x-signal-action": [
+            "broadcast",
+            "tune"
+          ],
+          "x-ui-widget": "select"
+        }
+      }
+    },
+    "whatIHave": {
+      "type": "object",
+      "title": "WHAT I HAVE",
+      "description": "Location and available documentation",
+      "required": [
+        "currentLocation"
+      ],
+      "properties": {
+        "currentLocation": {
+          "type": "object",
+          "title": "Current Address",
+          "description": "Routing location (coarse)",
+          "required": [
+            "area",
+            "city",
+            "district",
+            "state"
+          ],
+          "properties": {
+            "address": {
+              "type": "string",
+              "title": "Address",
+              "maxLength": 200
+            },
+            "area": {
+              "type": "string",
+              "title": "Area",
+              "maxLength": 100
+            },
+            "ward": {
+              "type": "string",
+              "title": "Ward",
+              "maxLength": 50
+            },
+            "village": {
+              "type": "string",
+              "title": "Village",
+              "maxLength": 100
+            },
+            "town": {
+              "type": "string",
+              "title": "Town",
+              "maxLength": 100
+            },
+            "city": {
+              "type": "string",
+              "title": "City",
+              "maxLength": 100
+            },
+            "block": {
+              "type": "string",
+              "title": "Block",
+              "maxLength": 100
+            },
+            "district": {
+              "type": "string",
+              "title": "District",
+              "maxLength": 100
+            },
+            "state": {
+              "type": "string",
+              "title": "State",
+              "maxLength": 100
+            }
+          },
+          "x-signal-action": [
+            "broadcast",
+            "tune"
+          ],
+          "x-tune-fields": [
+            "area",
+            "city"
+          ],
+          "x-broadcast-display": "area, town, city, district"
+        },
+        "documentsAvailable": {
+          "type": "array",
+          "title": "Which of these documents do you have?",
+          "description": "Indicates readiness, not proof",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Aadhaar",
+              "Income Cert",
+              "Disability Cert",
+              "School ID",
+              "Bank Account",
+              "Other"
+            ]
+          },
+          "uniqueItems": true,
+          "x-signal-action": [
+            "broadcast"
+          ],
+          "x-ui-widget": "checkboxes"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "whoIAm": {
+            "properties": {
+              "personaType": {
+                "type": "array",
+                "contains": {
+                  "const": "Student"
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "studentDetails": {
+            "type": "object",
+            "title": "Student Details",
+            "description": "Additional information for students",
+            "required": [
+              "class"
+            ],
+            "properties": {
+              "class": {
+                "type": "string",
+                "title": "Current Class",
+                "description": "Education stage for routing",
+                "maxLength": 50,
+                "x-signal-action": [
+                  "broadcast"
+                ],
+                "x-ui-placeholder": "e.g., 10th Grade, 2nd Year B.Tech"
+              },
+              "institutionType": {
+                "type": "string",
+                "title": "School or College Type",
+                "description": "Category of educational institution",
+                "enum": [
+                  "Govt",
+                  "Private",
+                  "Aided",
+                  "Don't Know"
+                ],
+                "x-signal-action": [
+                  "broadcast"
+                ],
+                "x-ui-widget": "select"
+              },
+              "institutionName": {
+                "type": "string",
+                "title": "School or College Name",
+                "description": "Used for aggregator matching (school/college)",
+                "maxLength": 200,
+                "x-signal-action": [
+                  "broadcast"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "whoIAm": {
+            "properties": {
+              "personaType": {
+                "type": "array",
+                "contains": {
+                  "const": "PwD"
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "pwdDetails": {
+            "type": "object",
+            "title": "Person with Disability (PwD) Details",
+            "description": "Additional information for persons with disabilities",
+            "required": [
+              "disabilityType",
+              "disabilityPercentage"
+            ],
+            "properties": {
+              "disabilityType": {
+                "type": "string",
+                "title": "Disability Type",
+                "description": "Type of disability (24 categories as per RPWD Act)",
+                "enum": [
+                  "Blindness",
+                  "Low Vision",
+                  "Leprosy Cured",
+                  "Hearing Impairment",
+                  "Locomotor Disability",
+                  "Dwarfism",
+                  "Intellectual Disability",
+                  "Mental Illness",
+                  "Autism Spectrum Disorder",
+                  "Cerebral Palsy",
+                  "Muscular Dystrophy",
+                  "Chronic Neurological Conditions",
+                  "Specific Learning Disabilities",
+                  "Multiple Sclerosis",
+                  "Speech and Language Disability",
+                  "Thalassemia",
+                  "Hemophilia",
+                  "Sickle Cell Disease",
+                  "Multiple Disabilities",
+                  "Parkinson's Disease",
+                  "Acid Attack Victims",
+                  "Multiple Disabilities including Deaf-Blindness"
+                ],
+                "x-signal-action": [
+                  "broadcast",
+                  "tune"
+                ],
+                "x-ui-widget": "select"
+              },
+              "disabilityPercentage": {
+                "type": "string",
+                "title": "Disability Percentage",
+                "description": "Percentage of disability",
+                "enum": [
+                  "30%",
+                  "40%",
+                  "50%",
+                  "60%",
+                  "70%",
+                  "80%",
+                  "90%",
+                  "100%"
+                ],
+                "x-signal-action": [
+                  "broadcast"
+                ],
+                "x-ui-widget": "select"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
