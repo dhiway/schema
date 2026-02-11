@@ -1,0 +1,191 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dpg.example.com/schemas/profile/beneficiary/requirement",
+  "title": "Beneficiary Profile Requirements",
+  "description": "Available actions and their input schemas for Beneficiary Profile items",
+  "type": "object",
+  "properties": {
+    "actions": {
+      "type": "object",
+      "properties": {
+        "create": {
+          "type": "object",
+          "properties": {
+            "input": {
+              "type": "object",
+              "description": "Schema for creating a new beneficiary profile",
+              "required": ["domain", "display_name", "whoIAm", "whatIWant", "whatIHave", "privacyConsent"],
+              "properties": {
+                "domain": {
+                  "type": "string",
+                  "enum": ["beneficiary"]
+                },
+                "display_name": {
+                  "type": "string"
+                },
+                "whoIAm": {
+                  "type": "object",
+                  "properties": {
+                    "name": { "type": "string" },
+                    "contact": { "type": "string" },
+                    "email": { "type": "string" },
+                    "ageBand": { "type": "string" },
+                    "gender": { "type": "string" },
+                    "personaType": { "type": "array", "items": { "type": "string" } }
+                  }
+                },
+                "whatIWant": {
+                  "type": "object",
+                  "properties": {
+                    "needCategory": { "type": "array", "items": { "type": "string" } },
+                    "urgency": { "type": "string" },
+                    "detailedRequirements": { "type": "string" }
+                  }
+                },
+                "whatIHave": {
+                  "type": "object",
+                  "properties": {
+                    "currentLocation": { "type": "object" },
+                    "caste": { "type": "string" },
+                    "documentsAvailable": { "type": "array", "items": { "type": "string" } }
+                  }
+                },
+                "studentDetails": { "type": "object" },
+                "pwdDetails": { "type": "object" },
+                "privacyConsent": { "type": "boolean" }
+              }
+            },
+            "api": {
+              "method": "POST",
+              "path": "/api/v1/item/create",
+              "description": "Create a new beneficiary profile"
+            }
+          }
+        },
+        "update": {
+          "type": "object",
+          "properties": {
+            "input": {
+              "type": "object",
+              "description": "Schema for updating an existing beneficiary profile",
+              "properties": {
+                "domain": { "type": "string" },
+                "display_name": { "type": "string" },
+                "whoIAm": { "type": "object" },
+                "whatIWant": { "type": "object" },
+                "whatIHave": { "type": "object" },
+                "studentDetails": { "type": "object" },
+                "pwdDetails": { "type": "object" },
+                "privacyConsent": { "type": "boolean" }
+              }
+            },
+            "api": {
+              "method": "PATCH",
+              "path": "/api/v1/item/{itemId}",
+              "description": "Update an existing beneficiary profile"
+            }
+          }
+        },
+        "delete": {
+          "type": "object",
+          "properties": {
+            "input": {
+              "type": "object",
+              "description": "Schema for deleting a beneficiary profile",
+              "properties": {
+                "reason": {
+                  "type": "string",
+                  "description": "Reason for deletion"
+                }
+              }
+            },
+            "api": {
+              "method": "DELETE",
+              "path": "/api/v1/item/{itemId}",
+              "description": "Delete a beneficiary profile"
+            }
+          }
+        },
+        "view": {
+          "type": "object",
+          "properties": {
+            "input": {
+              "type": "object",
+              "description": "Schema for viewing a beneficiary profile",
+              "properties": {
+                "includePrivate": {
+                  "type": "boolean",
+                  "description": "Whether to include private fields (requires authentication)"
+                }
+              }
+            },
+            "api": {
+              "method": "GET",
+              "path": "/api/v1/item/fetch",
+              "description": "Fetch beneficiary profile(s)"
+            }
+          }
+        },
+        "search": {
+          "type": "object",
+          "properties": {
+            "input": {
+              "type": "object",
+              "description": "Schema for searching beneficiary profiles",
+              "properties": {
+                "filters": {
+                  "type": "object",
+                  "properties": {
+                    "personaType": { "type": "array", "items": { "type": "string" } },
+                    "needCategory": { "type": "array", "items": { "type": "string" } },
+                    "gender": { "type": "string" },
+                    "ageBand": { "type": "string" },
+                    "city": { "type": "string" },
+                    "disabilityType": { "type": "string" }
+                  }
+                },
+                "limit": { "type": "number" },
+                "offset": { "type": "number" }
+              }
+            },
+            "api": {
+              "method": "GET",
+              "path": "/api/v1/item/fetch",
+              "description": "Search beneficiary profiles with filters"
+            }
+          }
+        },
+        "connect": {
+          "type": "object",
+          "properties": {
+            "input": {
+              "type": "object",
+              "description": "Schema for initiating a connection with a beneficiary",
+              "required": ["recipientId", "connectionType"],
+              "properties": {
+                "recipientId": {
+                  "type": "string",
+                  "description": "ID of the beneficiary to connect with"
+                },
+                "connectionType": {
+                  "type": "string",
+                  "enum": ["support", "mentorship", "funding"],
+                  "description": "Type of connection"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Optional message to accompany the connection request"
+                }
+              }
+            },
+            "api": {
+              "method": "PATCH",
+              "path": "/api/v1/item/{itemId}",
+              "description": "Create a connection request"
+            }
+          }
+        }
+      }
+    }
+  }
+}
