@@ -169,7 +169,7 @@
                 },
                 "connectionType": {
                   "type": "string",
-                  "enum": ["support", "mentorship", "funding"],
+                  "enum": ["DIRECT_SERVICE","REPRESENTATION","SERVICE_ROUTING","FUNDING_INTENT","EXECUTION_FUNDING"],
                   "description": "Type of connection"
                 },
                 "message": {
