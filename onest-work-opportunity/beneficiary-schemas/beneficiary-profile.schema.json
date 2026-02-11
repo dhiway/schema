@@ -1,0 +1,326 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dpg.example.com/schemas/profile/beneficiary/state",
+  "title": "Beneficiary Profile State",
+  "description": "Full internal state for Beneficiary Profile items including private fields",
+  "type": "object",
+  "required": ["domain", "display_name", "whoIAm", "whatIWant", "whatIHave"],
+  "properties": {
+    "domain": {
+      "type": "string",
+      "enum": ["beneficiary"],
+      "description": "Domain classification",
+      "x-dpg": { 
+        "isPrivate": false,
+        "signalActions": ["broadcast"]
+      }
+    },
+    "display_name": {
+      "type": "string",
+      "description": "Public display name",
+      "x-dpg": { 
+        "isPrivate": false,
+        "signalActions": ["broadcast"]
+      }
+    },
+    "userId": {
+      "type": "string",
+      "description": "Private auth linkage",
+      "x-dpg": { 
+        "isPrivate": true, 
+        "encrypt": true 
+      }
+    },
+    "internalScore": {
+      "type": "number",
+      "description": "Private ranking / scoring",
+      "x-dpg": { 
+        "isPrivate": true, 
+        "encrypt": true 
+      }
+    },
+    "whoIAm": {
+      "type": "object",
+      "required": ["name", "contact", "personaType"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Full name of beneficiary",
+          "x-dpg": { 
+            "isPrivate": false,
+            "signalActions": ["respond"]
+          }
+        },
+        "contact": {
+          "type": "string",
+          "description": "Contact mobile number",
+          "x-dpg": { 
+            "isPrivate": true, 
+            "encrypt": true,
+            "signalActions": ["respond"]
+          }
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Email address",
+          "x-dpg": { 
+            "isPrivate": true, 
+            "encrypt": true 
+          }
+        },
+        "ageBand": {
+          "type": "string",
+          "enum": ["Below 18", "Above 18"],
+          "x-dpg": { 
+            "isPrivate": false,
+            "signalActions": ["broadcast"]
+          }
+        },
+        "gender": {
+          "type": "string",
+          "enum": ["Male", "Female", "Other"],
+          "x-dpg": { 
+            "isPrivate": false,
+            "signalActions": ["broadcast", "tune"]
+          }
+        },
+        "personaType": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Student",
+              "Worker",
+              "PwD",
+              "Student-U18",
+              "PwD-U18",
+              "Women",
+              "Senior Citizens",
+              "Migrants",
+              "Kids (Under 15)",
+              "Youth (15-25)",
+              "Adults"
+            ]
+          },
+          "x-dpg": { 
+            "isPrivate": false,
+            "signalActions": ["broadcast"]
+          }
+        }
+      }
+    },
+    "whatIWant": {
+      "type": "object",
+      "required": ["needCategory"],
+      "properties": {
+        "needCategory": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Financial Aid",
+              "Education & Personal Development",
+              "Employment",
+              "Upskilling",
+              "Health",
+              "Assistive Devices",
+              "In-kind",
+              "Other"
+            ]
+          },
+          "x-dpg": { 
+            "isPrivate": false,
+            "signalActions": ["broadcast", "tune"]
+          }
+        },
+        "urgency": {
+          "type": "string",
+          "enum": ["Immediate", "Soon", "Flexible"],
+          "x-dpg": { 
+            "isPrivate": false,
+            "signalActions": ["broadcast", "tune"]
+          }
+        },
+        "detailedRequirements": {
+          "type": "string",
+          "description": "Detailed description of needs",
+          "x-dpg": { 
+            "isPrivate": false,
+            "signalActions": ["broadcast"]
+          }
+        }
+      }
+    },
+    "whatIHave": {
+      "type": "object",
+      "required": ["currentLocation"],
+      "properties": {
+        "currentLocation": {
+          "type": "object",
+          "required": ["city", "district", "state"],
+          "properties": {
+            "address": {
+              "type": "string",
+              "x-dpg": { 
+                "isPrivate": true, 
+                "encrypt": true 
+              }
+            },
+            "area": {
+              "type": "string",
+              "x-dpg": { 
+                "isPrivate": false,
+                "signalActions": ["broadcast", "tune"]
+              }
+            },
+            "city": {
+              "type": "string",
+              "x-dpg": { 
+                "isPrivate": false,
+                "signalActions": ["broadcast", "tune"]
+              }
+            },
+            "district": {
+              "type": "string",
+              "x-dpg": { 
+                "isPrivate": false,
+                "signalActions": ["broadcast", "tune"]
+              }
+            },
+            "state": {
+              "type": "string",
+              "x-dpg": { 
+                "isPrivate": false,
+                "signalActions": ["broadcast", "tune"]
+              }
+            },
+            "gps": {
+              "type": "object",
+              "properties": {
+                "lat": { 
+                  "type": "number",
+                  "x-dpg": { "isPrivate": false }
+                },
+                "lng": { 
+                  "type": "number",
+                  "x-dpg": { "isPrivate": false }
+                }
+              }
+            }
+          }
+        },
+        "caste": {
+          "type": "string",
+          "enum": ["GEN", "OBC", "SC", "ST"],
+          "x-dpg": { 
+            "isPrivate": false,
+            "signalActions": ["broadcast"]
+          }
+        },
+        "documentsAvailable": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["Aadhaar", "Income Cert", "Disability Cert", "School ID", "Bank Account", "Other"]
+          },
+          "x-dpg": { 
+            "isPrivate": false,
+            "signalActions": ["broadcast"]
+          }
+        }
+      }
+    },
+    "studentDetails": {
+      "type": "object",
+      "description": "Student-specific details (conditional)",
+      "properties": {
+        "class": {
+          "type": "string",
+          "x-dpg": { 
+            "isPrivate": false,
+            "signalActions": ["broadcast"]
+          }
+        },
+        "institutionType": {
+          "type": "string",
+          "enum": ["Govt", "Private", "Aided", "Don't Know"],
+          "x-dpg": { 
+            "isPrivate": false,
+            "signalActions": ["broadcast"]
+          }
+        },
+        "institutionName": {
+          "type": "string",
+          "x-dpg": { 
+            "isPrivate": false,
+            "signalActions": ["broadcast"]
+          }
+        }
+      }
+    },
+    "pwdDetails": {
+      "type": "object",
+      "description": "Person with Disability specific details (conditional)",
+      "properties": {
+        "disabilityType": {
+          "type": "string",
+          "enum": [
+            "Blindness",
+            "Low Vision",
+            "Leprosy Cured",
+            "Hearing Impairment",
+            "Locomotor Disability",
+            "Dwarfism",
+            "Intellectual Disability",
+            "Mental Illness",
+            "Autism Spectrum Disorder",
+            "Cerebral Palsy",
+            "Muscular Dystrophy",
+            "Chronic Neurological Conditions",
+            "Specific Learning Disabilities",
+            "Multiple Sclerosis",
+            "Speech and Language Disability",
+            "Thalassemia",
+            "Hemophilia",
+            "Sickle Cell Disease",
+            "Multiple Disabilities",
+            "Parkinson's Disease",
+            "Acid Attack Victims",
+            "Multiple Disabilities including Deaf-Blindness"
+          ],
+          "x-dpg": { 
+            "isPrivate": false,
+            "signalActions": ["broadcast", "tune"]
+          }
+        },
+        "disabilityPercentage": {
+          "type": "string",
+          "enum": ["30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%"],
+          "x-dpg": { 
+            "isPrivate": false,
+            "signalActions": ["broadcast"]
+          }
+        }
+      }
+    },
+    "privacyConsent": {
+      "type": "boolean",
+      "description": "Privacy consent agreement",
+      "x-dpg": { 
+        "isPrivate": false,
+        "signalActions": ["broadcast"]
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "x-dpg": { "isPrivate": false }
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "x-dpg": { "isPrivate": false }
+    }
+  }
+}
