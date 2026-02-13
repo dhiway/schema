@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dpg.example.com/schemas/profile/funder/state",
+  "title": "Funder Profile State",
+  "description": "Full internal state for Funder Profile items including private fields",
+  "type": "object",
+  "required": ["domain", "display_name", "whoIAm", "whatIWant"],
+  "properties": {
+    "domain": {
+      "type": "string",
+      "enum": ["funder"],
+      "x-dpg": { "isPrivate": false, "signalActions": ["broadcast"] }
+    },
+    "display_name": {
+      "type": "string",
+      "x-dpg": { "isPrivate": false, "signalActions": ["broadcast"] }
+    },
+    "userId": {
+      "type": "string",
+      "x-dpg": { "isPrivate": true, "encrypt": true }
+    },
+    "internalScore": {
+      "type": "number",
+      "x-dpg": { "isPrivate": true, "encrypt": true }
+    },
+    "whoIAm": {
+      "type": "object",
+      "required": ["name", "type"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "x-dpg": { "isPrivate": false, "signalActions": ["respond"] }
+        },
+        "type": {
+          "type": "string",
+          "enum": ["CSR Program", "Foundation", "Club/Trust", "Individual Donor"],
+          "x-dpg": { "isPrivate": false, "signalActions": ["broadcast", "tune"] }
+        },
+        "contactPerson": {
+          "type": "string",
+          "x-dpg": { "isPrivate": true, "encrypt": true, "signalActions": ["respond"] }
+        },
+        "contactDetails": {
+          "type": "string",
+          "x-dpg": { "isPrivate": true, "encrypt": true, "signalActions": ["respond"] }
+        },
+        "contactEmail": {
+          "type": "string",
+          "format": "email",
+          "x-dpg": { "isPrivate": true, "encrypt": true, "signalActions": ["respond"] }
+        }
+      }
+    },
+    "whatIWant": {
+      "type": "object",
+      "properties": {
+        "geographyOfInterest": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "address": { "type": "string" },
+              "lat": { "type": "number" },
+              "lng": { "type": "number" }
+            }
+          },
+          "x-dpg": { "isPrivate": false, "signalActions": ["broadcast", "tune"] }
+        },
+        "personasOfInterest": {
+          "type": "array",
+          "items": { "type": "string" },
+          "x-dpg": { "isPrivate": false, "signalActions": ["broadcast", "tune"] }
+        },
+        "needFocus": {
+          "type": "array",
+          "items": { "type": "string" },
+          "x-dpg": { "isPrivate": false, "signalActions": ["broadcast", "tune"] }
+        },
+        "supportMode": {
+          "type": "string",
+          "enum": ["Direct to Beneficiary", "Via Aggregator", "Via Service Provider", "Mixed"],
+          "x-dpg": { "isPrivate": false, "signalActions": ["broadcast"] }
+        },
+        "fundingHorizon": {
+          "type": "string",
+          "enum": ["One-time", "Pilot", "Annual", "Multi-year"],
+          "x-dpg": { "isPrivate": false, "signalActions": ["broadcast", "tune"] }
+        },
+        "typicalSupportSize": {
+          "type": "string",
+          "x-dpg": { "isPrivate": false, "signalActions": ["broadcast"] }
+        },
+        "urgency": {
+          "type": "string",
+          "enum": ["Immediate", "This quarter", "Flexible"],
+          "x-dpg": { "isPrivate": false, "signalActions": ["broadcast"] }
+        }
+      }
+    },
+    "whatIHave": {
+      "type": "object",
+      "properties": {
+        "reportingLevel": {
+          "type": "string",
+          "enum": ["Light", "Medium", "Heavy"],
+          "x-dpg": { "isPrivate": false, "signalActions": ["broadcast"] }
+        },
+        "preferredPartnerType": {
+          "type": "array",
+          "items": { "type": "string" },
+          "x-dpg": { "isPrivate": false, "signalActions": ["broadcast"] }
+        }
+      }
+    },
+    "institutionalDetails": {
+      "type": "object",
+      "properties": {
+        "organizationAddress": {
+          "type": "string",
+          "x-dpg": { "isPrivate": true, "encrypt": true, "signalActions": ["respond"] }
+        },
+        "registrationNumber": {
+          "type": "string",
+          "x-dpg": { "isPrivate": true, "encrypt": true }
+        }
+      }
+    },
+    "individualDetails": {
+      "type": "object",
+      "properties": {
+        "yourAddress": {
+          "type": "string",
+          "x-dpg": { "isPrivate": true, "encrypt": true, "signalActions": ["respond"] }
+        }
+      }
+    },
+    "privacyConsent": {
+      "type": "boolean",
+      "x-dpg": { "isPrivate": false, "signalActions": ["broadcast"] }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "x-dpg": { "isPrivate": false }
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "x-dpg": { "isPrivate": false }
+    }
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dpg.example.com/schemas/profile/service-provider/state",
+  "title": "Service Provider Profile State",
+  "description": "Full internal state for Service Provider Profile items including private fields",
+  "type": "object",
+  "required": ["domain", "display_name", "whoIAm", "whatIHave"],
+  "properties": {
+    "domain": {
+      "type": "string",
+      "enum": ["service_provider"],
+      "x-dpg": { "isPrivate": false, "signalActions": ["broadcast"] }
+    },
+    "display_name": {
+      "type": "string",
+      "x-dpg": { "isPrivate": false, "signalActions": ["broadcast"] }
+    },
+    "userId": {
+      "type": "string",
+      "x-dpg": { "isPrivate": true, "encrypt": true }
+    },
+    "internalScore": {
+      "type": "number",
+      "x-dpg": { "isPrivate": true, "encrypt": true }
+    },
+    "whoIAm": {
+      "type": "object",
+      "required": ["name", "type"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "x-dpg": { "isPrivate": false, "signalActions": ["respond"] }
+        },
+        "type": {
+          "type": "string",
+          "enum": ["NGO", "Private Entity", "Govt Entity", "Individual", "Community Group"],
+          "x-dpg": { "isPrivate": true, "encrypt": true, "signalActions": ["respond"] }
+        },
+        "address": {
+          "type": "string",
+          "x-dpg": { "isPrivate": true, "encrypt": true, "signalActions": ["respond"] }
+        },
+        "contactPerson": {
+          "type": "string",
+          "x-dpg": { "isPrivate": true, "encrypt": true, "signalActions": ["respond"] }
+        },
+        "contactDetails": {
+          "type": "string",
+          "x-dpg": { "isPrivate": true, "encrypt": true, "signalActions": ["respond"] }
+        },
+        "contactEmail": {
+          "type": "string",
+          "format": "email",
+          "x-dpg": { "isPrivate": true, "encrypt": true, "signalActions": ["respond"] }
+        }
+      }
+    },
+    "whatIWant": {
+      "type": "object",
+      "properties": {
+        "beneficiaryPersonasSought": {
+          "type": "array",
+          "items": { "type": "string" },
+          "x-dpg": { "isPrivate": false, "signalActions": ["broadcast"] }
+        },
+        "newGeographiesOfInterest": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "address": { "type": "string" },
+              "lat": { "type": "number" },
+              "lng": { "type": "number" }
+            }
+          },
+          "x-dpg": { "isPrivate": false, "signalActions": ["broadcast"] }
+        },
+        "fundingRequired": {
+          "type": "boolean",
+          "x-dpg": { "isPrivate": false, "signalActions": ["broadcast"] }
+        }
+      }
+    },
+    "whatIHave": {
+      "type": "object",
+      "required": ["serviceType", "geographyServed"],
+      "properties": {
+        "serviceType": {
+          "type": "string",
+          "enum": ["Training", "Health", "Assistive Devices", "Housing", "Travel", "Financial Services", "Application Support", "Other"],
+          "x-dpg": { "isPrivate": false, "signalActions": ["broadcast"] }
+        },
+        "personasServed": {
+          "type": "array",
+          "items": { "type": "string" },
+          "x-dpg": { "isPrivate": false, "signalActions": ["broadcast"] }
+        },
+        "geographyServed": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "address": { "type": "string" },
+              "lat": { "type": "number" },
+              "lng": { "type": "number" }
+            }
+          },
+          "x-dpg": { "isPrivate": false, "signalActions": ["broadcast"] }
+        },
+        "capacityBand": {
+          "type": "string",
+          "enum": ["Limited", "Moderate", "Large"],
+          "x-dpg": { "isPrivate": false, "signalActions": ["broadcast"] }
+        },
+        "deliveryMode": {
+          "type": "string",
+          "enum": ["Self-service", "Assisted", "Fully Assisted"],
+          "x-dpg": { "isPrivate": false, "signalActions": ["broadcast"] }
+        },
+        "typicalTimeToDeliver": {
+          "type": "string",
+          "enum": ["Immediate", "<1 week", "1-4 weeks", ">1 month"],
+          "x-dpg": { "isPrivate": false, "signalActions": ["broadcast"] }
+        },
+        "costPerService": {
+          "type": "string",
+          "x-dpg": { "isPrivate": false, "signalActions": ["broadcast"] }
+        }
+      }
+    },
+    "privacyConsent": {
+      "type": "boolean",
+      "x-dpg": { "isPrivate": false, "signalActions": ["broadcast"] }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "x-dpg": { "isPrivate": false }
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "x-dpg": { "isPrivate": false }
+    }
+  }
+}

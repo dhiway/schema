@@ -1,0 +1,198 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dpg.example.com/schemas/connection/service-provider-funder/state",
+  "title": "Service Provider-Funder Connection State",
+  "description": "Full internal state for EXECUTION_FUNDING connection between Service Provider and Funder",
+  "type": "object",
+  "required": ["connection_type", "status", "initiator_id", "initiator_domain", "recipient_id", "recipient_domain"],
+  "properties": {
+    "connection_type": {
+      "type": "string",
+      "enum": ["EXECUTION_FUNDING"],
+      "description": "Funder funds the service provider for execution of services to beneficiaries",
+      "x-dpg": {
+        "isPrivate": false,
+        "signalActions": ["broadcast"]
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "accepted", "rejected", "cancelled"],
+      "description": "Current connection status",
+      "x-dpg": {
+        "isPrivate": false,
+        "signalActions": ["broadcast"]
+      }
+    },
+    "initiator_id": {
+      "type": "string",
+      "description": "Profile ID of the actor who initiated the connection",
+      "x-dpg": {
+        "isPrivate": false,
+        "signalActions": ["broadcast"]
+      }
+    },
+    "initiator_domain": {
+      "type": "string",
+      "enum": ["service_provider", "funder"],
+      "description": "Domain of the initiating actor",
+      "x-dpg": {
+        "isPrivate": false,
+        "signalActions": ["broadcast"]
+      }
+    },
+    "recipient_id": {
+      "type": "string",
+      "description": "Profile ID of the actor receiving the connection request",
+      "x-dpg": {
+        "isPrivate": false,
+        "signalActions": ["broadcast"]
+      }
+    },
+    "recipient_domain": {
+      "type": "string",
+      "enum": ["service_provider", "funder"],
+      "description": "Domain of the recipient actor",
+      "x-dpg": {
+        "isPrivate": false,
+        "signalActions": ["broadcast"]
+      }
+    },
+    "message": {
+      "type": "string",
+      "description": "Message accompanying the connection request",
+      "x-dpg": {
+        "isPrivate": false,
+        "signalActions": ["respond"]
+      }
+    },
+    "notes": {
+      "type": "string",
+      "description": "Private internal notes",
+      "x-dpg": {
+        "isPrivate": true,
+        "encrypt": true
+      }
+    },
+    "internal_rating": {
+      "type": "number",
+      "description": "Private internal rating",
+      "x-dpg": {
+        "isPrivate": true,
+        "encrypt": true
+      }
+    },
+    "tuneData": {
+      "type": "object",
+      "description": "Execution agreement details refined during negotiation",
+      "properties": {
+        "unitCost": {
+          "type": "string",
+          "description": "Cost per unit of service delivery",
+          "x-dpg": {
+            "isPrivate": true,
+            "encrypt": true,
+            "signalActions": ["respond"]
+          }
+        },
+        "capacity": {
+          "type": "number",
+          "description": "Agreed capacity for service delivery",
+          "x-dpg": {
+            "isPrivate": false,
+            "signalActions": ["tune"]
+          }
+        },
+        "timeline": {
+          "type": "string",
+          "enum": ["Immediate", "1-4 weeks", "1-3 months", "3-6 months", "6+ months"],
+          "description": "Expected execution timeline",
+          "x-dpg": {
+            "isPrivate": false,
+            "signalActions": ["tune"]
+          }
+        },
+        "reportingLevel": {
+          "type": "string",
+          "enum": ["Light", "Medium", "Heavy"],
+          "description": "Expected reporting level from the service provider",
+          "x-dpg": {
+            "isPrivate": false,
+            "signalActions": ["tune"]
+          }
+        }
+      }
+    },
+    "case_id": {
+      "type": "string",
+      "description": "Associated execution case ID for tracking lifecycle",
+      "x-dpg": {
+        "isPrivate": false,
+        "signalActions": ["broadcast"]
+      }
+    },
+    "milestones": {
+      "type": "array",
+      "description": "Milestone events tracking execution and reporting lifecycle",
+      "items": {
+        "type": "object",
+        "properties": {
+          "stage": {
+            "type": "string",
+            "enum": ["funds_released", "services_delivered", "reports_submitted", "closed"]
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "notes": { "type": "string" },
+          "amount": {
+            "type": "string",
+            "description": "Amount associated with this milestone (if applicable)"
+          }
+        }
+      },
+      "x-dpg": {
+        "isPrivate": false,
+        "signalActions": ["broadcast"]
+      }
+    },
+    "outcome_status": {
+      "type": "string",
+      "enum": ["successful", "partially_successful", "unsuccessful", "withdrawn"],
+      "description": "Final outcome of the execution funding connection",
+      "x-dpg": {
+        "isPrivate": false,
+        "signalActions": ["broadcast"]
+      }
+    },
+    "outcome_reason": {
+      "type": "string",
+      "description": "Reason for closure or outcome",
+      "x-dpg": {
+        "isPrivate": false,
+        "signalActions": ["respond"]
+      }
+    },
+    "connected_at": {
+      "type": "string",
+      "format": "date-time",
+      "x-dpg": { "isPrivate": false }
+    },
+    "closed_at": {
+      "type": "string",
+      "format": "date-time",
+      "x-dpg": { "isPrivate": false }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "x-dpg": { "isPrivate": false }
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "x-dpg": { "isPrivate": false }
+    }
+  }
+}

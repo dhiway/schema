@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dpg.example.com/schemas/profile/aggregator/state",
+  "title": "Aggregator Profile State",
+  "description": "Full internal state for Aggregator Profile items including private fields",
+  "type": "object",
+  "required": ["domain", "display_name", "whoIAm", "whatIHave"],
+  "properties": {
+    "domain": {
+      "type": "string",
+      "enum": ["aggregator"],
+      "x-dpg": { "isPrivate": false, "signalActions": ["broadcast"] }
+    },
+    "display_name": {
+      "type": "string",
+      "x-dpg": { "isPrivate": false, "signalActions": ["broadcast"] }
+    },
+    "userId": {
+      "type": "string",
+      "x-dpg": { "isPrivate": true, "encrypt": true }
+    },
+    "internalScore": {
+      "type": "number",
+      "x-dpg": { "isPrivate": true, "encrypt": true }
+    },
+    "whoIAm": {
+      "type": "object",
+      "required": ["contactName", "contactDetails"],
+      "properties": {
+        "contactName": {
+          "type": "string",
+          "x-dpg": { "isPrivate": false, "signalActions": ["respond"] }
+        },
+        "contactDetails": {
+          "type": "string",
+          "x-dpg": { "isPrivate": true, "encrypt": true, "signalActions": ["respond"] }
+        },
+        "contactEmail": {
+          "type": "string",
+          "format": "email",
+          "x-dpg": { "isPrivate": true, "encrypt": true, "signalActions": ["respond"] }
+        }
+      }
+    },
+    "whatIWant": {
+      "type": "object",
+      "properties": {
+        "needs": {
+          "type": "array",
+          "items": { "type": "string" },
+          "x-dpg": { "isPrivate": false, "signalActions": ["broadcast"] }
+        },
+        "partnerType": {
+          "type": "array",
+          "items": { "type": "string" },
+          "x-dpg": { "isPrivate": false, "signalActions": ["broadcast"] }
+        }
+      }
+    },
+    "whatIHave": {
+      "type": "object",
+      "required": ["aggregatorType"],
+      "properties": {
+        "aggregatorType": {
+          "type": "string",
+          "enum": ["College", "School", "Teachers", "Principals", "Educational Institute", "NGO", "Household"],
+          "x-dpg": { "isPrivate": false, "signalActions": ["broadcast"] }
+        },
+        "personasAvailable": {
+          "type": "array",
+          "items": { "type": "string" },
+          "x-dpg": { "isPrivate": false, "signalActions": ["broadcast"] }
+        },
+        "verifiedBeneficiaries": {
+          "type": "string",
+          "enum": ["Yes", "No"],
+          "x-dpg": { "isPrivate": false, "signalActions": ["broadcast"] }
+        }
+      }
+    },
+    "institutionalDetails": {
+      "type": "object",
+      "description": "Institutional-specific details (conditional)",
+      "properties": {
+        "organizationName": {
+          "type": "string",
+          "x-dpg": { "isPrivate": false, "signalActions": ["respond"] }
+        },
+        "organizationAddress": {
+          "type": "string",
+          "x-dpg": { "isPrivate": true, "encrypt": true, "signalActions": ["respond"] }
+        },
+        "geographyServed": {
+          "type": "array",
+          "items": { "type": "string" },
+          "x-dpg": { "isPrivate": false, "signalActions": ["broadcast"] }
+        }
+      }
+    },
+    "householdDetails": {
+      "type": "object",
+      "description": "Household-specific details (conditional)",
+      "properties": {
+        "householdAddress": {
+          "type": "string",
+          "x-dpg": { "isPrivate": true, "encrypt": true, "signalActions": ["respond"] }
+        }
+      }
+    },
+    "privacyConsent": {
+      "type": "boolean",
+      "x-dpg": { "isPrivate": false, "signalActions": ["broadcast"] }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "x-dpg": { "isPrivate": false }
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "x-dpg": { "isPrivate": false }
+    }
+  }
+}
