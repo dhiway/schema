@@ -1,0 +1,272 @@
+[
+    {
+        "item_type": "profile",
+        "item_id": "2f6d6ca4-1f41-42e0-8899-9ce17683244c",
+        "item_domain": "serviceProvider",
+        "item_domain_url": null,
+        "item_schema_id": null,
+        "item_schema_url": null,
+        "item_state": {
+            "gps": {
+                "lat": 15.1597926,
+                "lng": 76.353928,
+                "formattedAddress": "Shimoga - Harihar - Hospet Rd, Mariyammanahalli, Karnataka, India"
+            },
+            "userId": "aa33c494-5f8d-4259-b08a-b643f2d3d00a",
+            "whoIAm": {
+                "name": "Testing-SP",
+                "type": "Private Entity",
+                "address": "Shimoga - Harihar - Hospet Rd, Mariyammanahalli, Karnataka, India",
+                "contactEmail": "xyz@gmail.com",
+                "contactPerson": "xyz",
+                "contactDetails": "7013232424"
+            },
+            "whatIHave": {
+                "serviceType": "Travel",
+                "capacityBand": "Moderate",
+                "deliveryMode": "Assisted",
+                "costPerService": "Subsidised",
+                "personasServed": [
+                    "Students",
+                    "PwD",
+                    "Workers",
+                    "Migrants"
+                ],
+                "geographyServed": [
+                    {
+                        "lat": 17.406498,
+                        "lng": 78.47724389999999,
+                        "fullAddress": "Hyderabad, Telangana, India"
+                    }
+                ],
+                "typicalTimeToDeliver": "<1 week"
+            },
+            "whatIWant": {
+                "fundingRequired": true,
+                "newGeographiesOfInterest": [
+                    {
+                        "lat": 26.449923,
+                        "lng": 80.3318736,
+                        "fullAddress": "Kanpur, Uttar Pradesh, India"
+                    }
+                ],
+                "beneficiaryPersonasSought": [
+                    "Students",
+                    "PwD",
+                    "Workers"
+                ]
+            },
+            "privacyConsent": true
+        },
+        "item_requirements": {},
+        "item_filters": {},
+        "created_at": "2026-02-19 13:35:49.234+00",
+        "updated_at": "2026-02-19 13:35:49.234+00"
+    },
+    {
+        "item_type": "profile",
+        "item_id": "49ed295b-c25d-4dfb-aeb1-c66db2a61e01",
+        "item_domain": "aggregator",
+        "item_domain_url": null,
+        "item_schema_id": null,
+        "item_schema_url": null,
+        "item_state": {
+            "gps": {
+                "lat": 12.8585859,
+                "lng": 77.4299941,
+                "formattedAddress": "Bengaluru - Mysuru Expy, Bengaluru, Karnataka, India"
+            },
+            "userId": "aa33c494-5f8d-4259-b08a-b643f2d3d00a",
+            "whoIAm": {
+                "contactName": "testing-agg",
+                "contactEmail": "example@gmail.com",
+                "contactDetails": "7013232424"
+            },
+            "whatIHave": {
+                "aggregatorType": "Principals",
+                "personasAvailable": [
+                    "Students",
+                    "PwD",
+                    "Adults",
+                    "Women & Girls"
+                ],
+                "verifiedBeneficiaries": "Yes"
+            },
+            "whatIWant": {
+                "needs": [
+                    "Financial Need",
+                    "Infrastructural Need",
+                    "Personal Development",
+                    "Upskilling"
+                ],
+                "partnerType": [
+                    "Funders",
+                    "Service Providers"
+                ]
+            },
+            "privacyConsent": true,
+            "institutionalDetails": {
+                "geographyServed": [
+                    {
+                        "lat": 15.3647083,
+                        "lng": 75.1239547,
+                        "fullAddress": "Hubballi, Karnataka, India"
+                    },
+                    {
+                        "lat": 15.4589236,
+                        "lng": 75.007808,
+                        "fullAddress": "Dharwad, Karnataka, India"
+                    }
+                ],
+                "organizationName": "AAAA",
+                "organizationAddress": "Bengaluru - Mysuru Expy, Bengaluru, Karnataka, India"
+            }
+        },
+        "item_requirements": {},
+        "item_filters": {},
+        "created_at": "2026-02-19 13:34:37.748+00",
+        "updated_at": "2026-02-19 13:34:37.748+00"
+    },
+    {
+        "item_type": "profile",
+        "item_id": "e330844f-adb9-4dc4-94ee-25bc0baa6f76",
+        "item_domain": "funder",
+        "item_domain_url": null,
+        "item_schema_id": null,
+        "item_schema_url": null,
+        "item_state": {
+            "gps": {
+                "lat": 26.1810028,
+                "lng": 91.7496974,
+                "formattedAddress": "Guwahati Railway Station Platform Overbridge, Paltan Bazaar, Guwahati, Assam 781008, India"
+            },
+            "userId": "d0813cd9-930d-42c2-9fb3-5418e65d3150",
+            "whoIAm": {
+                "name": "Testing-Funder",
+                "type": "Foundation",
+                "contactEmail": "AAA@gmail.com",
+                "contactPerson": "aaa",
+                "contactDetails": "7013232424"
+            },
+            "whatIHave": {
+                "reportingLevel": "Medium",
+                "preferredPartnerType": [
+                    "Schools",
+                    "NGOs",
+                    "CSCs",
+                    "Govt Departments",
+                    "Service Providers"
+                ]
+            },
+            "whatIWant": {
+                "urgency": "This quarter",
+                "needFocus": [
+                    "Education",
+                    "Financial Aid",
+                    "Health",
+                    "In-kind Support",
+                    "Upskilling",
+                    "Infrastructure/Maintenance",
+                    "Assistive Devices",
+                    "Livelihoods/Employment",
+                    "Other"
+                ],
+                "supportMode": "Via Aggregator",
+                "fundingHorizon": "Annual",
+                "personasOfInterest": [
+                    "Students",
+                    "PwD",
+                    "Women",
+                    "Workers",
+                    "Senior Citizens",
+                    "Other"
+                ],
+                "typicalSupportSize": "Small",
+                "geographyOfInterest": [
+                    {
+                        "lat": 22.0627164,
+                        "lng": 88.0832934,
+                        "fullAddress": "Haldia, West Bengal, India"
+                    }
+                ]
+            },
+            "privacyConsent": true,
+            "institutionalDetails": {
+                "organizationAddress": "Guwahati Railway Station Platform Overbridge, Paltan Bazaar, Guwahati, Assam 781008, India"
+            }
+        },
+        "item_requirements": {},
+        "item_filters": {},
+        "created_at": "2026-02-19 13:37:21.263+00",
+        "updated_at": "2026-02-19 13:37:21.263+00"
+    },
+    {
+        "item_type": "profile",
+        "item_id": "f69a04b9-7ec4-472b-8382-a0b1e866d8d2",
+        "item_domain": "benificiary",
+        "item_domain_url": null,
+        "item_schema_id": null,
+        "item_schema_url": null,
+        "item_state": {
+            "gps": {
+                "lat": 28.6763947,
+                "lng": 77.2024277,
+                "formattedAddress": "Ghanta Ghar Chowk, Delhi, 110007, India"
+            },
+            "userId": "49dc6257-df9b-4cad-951e-a528be4b973b",
+            "whoIAm": {
+                "name": "Beneficiary-testing",
+                "gender": "Male",
+                "ageBand": "Above 18",
+                "contact": "+917019578192",
+                "personaType": [
+                    "Student",
+                    "Worker",
+                    "PwD"
+                ]
+            },
+            "whatIHave": {
+                "caste": "GEN",
+                "currentLocation": {
+                    "gps": {
+                        "lat": 28.6763947,
+                        "lng": 77.2024277
+                    },
+                    "city": "Delhi",
+                    "state": "Delhi",
+                    "district": "Central Delhi",
+                    "fullAddress": "Ghanta Ghar Chowk, Delhi, 110007, India"
+                },
+                "documentsAvailable": [
+                    "Aadhaar",
+                    "Income Cert",
+                    "Disability Cert",
+                    "School ID"
+                ]
+            },
+            "whatIWant": {
+                "needCategory": [
+                    "Financial Aid",
+                    "Education",
+                    "Employment",
+                    "Upskilling",
+                    "Personal Development"
+                ]
+            },
+            "pwdDetails": {
+                "disabilityType": "Low Vision",
+                "disabilityPercentage": "70%"
+            },
+            "privacyConsent": true,
+            "studentDetails": {
+                "class": "10th Grade",
+                "institutionName": "HPS ANCD",
+                "institutionType": "Govt"
+            }
+        },
+        "item_requirements": {},
+        "item_filters": {},
+        "created_at": "2026-02-19 13:33:20.007+00",
+        "updated_at": "2026-02-19 13:33:20.007+00"
+    }
+]
